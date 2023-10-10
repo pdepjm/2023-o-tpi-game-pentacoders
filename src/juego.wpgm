@@ -1,8 +1,36 @@
 import wollok.game.*
-import pepita.*
+import jugadores.*
 
+// implementar primera entrega como minimo:
+// dos jugadores
+// disparar y apuntar, cambiar imagen * 
+// mover jugador * 
+// al disparar y apuntar usar teclas distintas *
+// delegar en objetos cuando se apunta y dispara *
+// conjunto chico de tests que se fije si anda disparar en una direccion *
+// avisar tutores * 
+// OPCIONAL:
+// agregar enemigos 
+// pensar en agregar power ups para la segunda entrega
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.width(25)
+	game.height(10)
+	game.title("Juego Pentacoders")
+		// movimiento jugador 1
+	keyboard.w().onPressDo({ jugador1.moverArriba() })
+	keyboard.a().onPressDo({ jugador1.moverIzquierda() })
+	keyboard.s().onPressDo({ jugador1.moverAbajo() })
+	keyboard.d().onPressDo({ jugador1.moverDerecha() })
+	keyboard.e().onPressDo({ jugador1.rotarADerecha() })
+	keyboard.q().onPressDo({ jugador1.rotarAIzquierda() })
+		// movimiento jugador 2
+		// keyboard.up().onPressDo({ jugador2.moverArriba() })
+		// keyboard.left().onPressDo({ jugador2.moverIzquierda() })
+		// keyboard.down().onPressDo({ jugador2.moverAbajo() })
+		// keyboard.right().onPressDo({ jugador2.moverDerecha() })
+		// keyboard.o().onPressDo({jugador2.rotarADerecha()})
+		// keyboard.p().onPressDo({jugador2.rotarAIzquierda()})
+	keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+	game.addVisual(jugador1)
 	game.start()
 }
