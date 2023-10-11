@@ -3,7 +3,8 @@ import jugadores.*
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
-// disparar y apuntar, cambiar imagen * 
+// rotar en principio a 90* y luego ver en 45 ( opcional lo ultimo)
+// disparar, cambiar imagen * 
 // mover jugador * (listo, falta ver tema rotacion)
 // al disparar y apuntar usar teclas distintas  *
 // delegar en objetos cuando se apunta y dispara *
@@ -40,7 +41,9 @@ program juego {
 	  
 	game.addVisual(jugador2)
 
-
+	// power up que te de trinagulols en vez de poelottias que den mas daño
+	// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve
+	// cuando la municion colisiona con algo, el jugadcor, con el que disparar, o la pared, o los enemigos, deberia desaparecer
 	
 	game.start()
 }
