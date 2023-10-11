@@ -2,10 +2,10 @@ import wollok.game.*
 import jugadores.*
 
 // implementar primera entrega como minimo:
-// dos jugadores
+// dos jugadores(listo)
 // disparar y apuntar, cambiar imagen * 
-// mover jugador * 
-// al disparar y apuntar usar teclas distintas *
+// mover jugador * (listo, falta ver tema rotacion)
+// al disparar y apuntar usar teclas distintas  *
 // delegar en objetos cuando se apunta y dispara *
 // conjunto chico de tests que se fije si anda disparar en una direccion *
 // avisar tutores * 
@@ -23,14 +23,24 @@ program juego {
 	keyboard.d().onPressDo({ jugador1.moverDerecha() })
 	keyboard.e().onPressDo({ jugador1.rotarADerecha() })
 	keyboard.q().onPressDo({ jugador1.rotarAIzquierda() })
+	keyboard.r().onPressDo({ jugador1.disparar()})
+	
 		// movimiento jugador 2
-		// keyboard.up().onPressDo({ jugador2.moverArriba() })
-		// keyboard.left().onPressDo({ jugador2.moverIzquierda() })
-		// keyboard.down().onPressDo({ jugador2.moverAbajo() })
-		// keyboard.right().onPressDo({ jugador2.moverDerecha() })
-		// keyboard.o().onPressDo({jugador2.rotarADerecha()})
-		// keyboard.p().onPressDo({jugador2.rotarAIzquierda()})
+	keyboard.up().onPressDo({ jugador2.moverArriba() })
+	keyboard.left().onPressDo({ jugador2.moverIzquierda() })
+	keyboard.down().onPressDo({ jugador2.moverAbajo() })
+	keyboard.right().onPressDo({ jugador2.moverDerecha() })
+	keyboard.o().onPressDo({jugador2.rotarADerecha()})
+	keyboard.p().onPressDo({jugador2.rotarAIzquierda()})
+	keyboard.i().onPressDo({ jugador2.disparar()})
+		
+		
 	keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
 	game.addVisual(jugador1)
+	  
+	game.addVisual(jugador2)
+
+
+	
 	game.start()
 }
