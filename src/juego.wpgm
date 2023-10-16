@@ -26,7 +26,8 @@ program juego {
 	keyboard.q().onPressDo({ jugador1.rotarAIzquierda() })
 	keyboard.r().onPressDo({ jugador1.disparar()})
 	
-		// movimiento jugador 2
+			// movimiento jugador 2
+/*			
 	keyboard.up().onPressDo({ jugador2.moverArriba() })
 	keyboard.left().onPressDo({ jugador2.moverIzquierda() })
 	keyboard.down().onPressDo({ jugador2.moverAbajo() })
@@ -34,12 +35,13 @@ program juego {
 	keyboard.o().onPressDo({jugador2.rotarADerecha()})
 	keyboard.p().onPressDo({jugador2.rotarAIzquierda()})
 	keyboard.i().onPressDo({ jugador2.disparar()})
+*/		
 		
-		
-	keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+	//keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+	
 	game.addVisual(jugador1)
 	  
-	game.addVisual(jugador2)
+	//game.addVisual(jugador2)
 
 	// power up que te de trinagulols en vez de poelottias que den mas daño
 	// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve
