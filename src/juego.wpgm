@@ -16,34 +16,46 @@ import municion.*
 // agregar enemigos
 // pensar en agregar power ups para la segunda entrega
 program juego {
-	game.width(25)
-	game.height(10)
-	game.title("Juego Pentacoders")
-	var jugador1 = new Jugador()
-	var jugador2 = new Jugador()
-		// movimiento jugador 1
-	keyboard.w().onPressDo({ jugador1.moverArriba() })
-	keyboard.a().onPressDo({ jugador1.moverIzquierda() })
-	keyboard.s().onPressDo({ jugador1.moverAbajo() })
-	keyboard.d().onPressDo({ jugador1.moverDerecha() })
-	keyboard.e().onPressDo({ jugador1.rotarADerecha() })
-	keyboard.q().onPressDo({ jugador1.rotarAIzquierda() })
-	keyboard.r().onPressDo({ jugador1.disparar() })
-		// comportamiento municion
-		// movimiento jugador 2
-	keyboard.up().onPressDo({ jugador2.moverArriba() })
-	keyboard.left().onPressDo({ jugador2.moverIzquierda() })
-	keyboard.down().onPressDo({ jugador2.moverAbajo() })
-	keyboard.right().onPressDo({ jugador2.moverDerecha() })
-	keyboard.o().onPressDo({ jugador2.rotarADerecha() })
-	keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })
-	keyboard.i().onPressDo({ jugador2.disparar() })
-		// keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
-	game.addVisual(jugador1)
-	game.showAttributes(jugador1)
-	game.addVisual(jugador2)
-		// power up que te de trinagulols en vez de poelottias que den mas daño
-		// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve
-		// cuando la municion colisiona con algo, el jugadcor, con el que disparar, o la pared, o los enemigos, deberia desaparecer
-	game.start()
+		game.width(25)
+		game.height(10)
+		game.cellSize(50)
+		
+		
+		game.title("Juego Pentacoders")
+		//var jugador1 = new Jugador()
+		
+		var jugador2 = new Jugador()
+		
+		var jugador3 = new Jugador()
+		
+			// movimiento jugador 1
+		keyboard.w().onPressDo({ jugador3.moverArriba() })
+		keyboard.a().onPressDo({ jugador3.moverIzquierda() })
+		keyboard.s().onPressDo({ jugador3.moverAbajo() })
+		keyboard.d().onPressDo({ jugador3.moverDerecha() })
+		keyboard.e().onPressDo({ jugador3.rotarADerecha() })
+		keyboard.q().onPressDo({ jugador3.rotarAIzquierda() })
+		keyboard.r().onPressDo({ jugador3.disparar() })
+			// comportamiento municion
+			// movimiento jugador 2
+
+
+		keyboard.up().onPressDo({ jugador2.moverArriba() })
+		keyboard.left().onPressDo({ jugador2.moverIzquierda() })
+		keyboard.down().onPressDo({ jugador2.moverAbajo() })
+		keyboard.right().onPressDo({ jugador2.moverDerecha() })
+		keyboard.o().onPressDo({ jugador2.rotarADerecha() })
+		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })
+		keyboard.i().onPressDo({ jugador2.disparar() })
+		game.addVisual(jugador2)		
+
+		
+			// keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+		game.addVisual(jugador3)
+		game.showAttributes(jugador3)
+
+			// power up que te de trinagulols en vez de poelottias que den mas daño
+			// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve
+			// cuando la municion colisiona con algo, el jugadcor, con el que disparar, o la pared, o los enemigos, deberia desaparecer
+		game.start()
 }
