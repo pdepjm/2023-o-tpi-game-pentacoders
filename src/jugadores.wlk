@@ -80,6 +80,11 @@ class Jugador {
 	}
 
 
+	method sufrirDanio(danio){
+		hp -= danio
+	}
+
+
 
 
 }

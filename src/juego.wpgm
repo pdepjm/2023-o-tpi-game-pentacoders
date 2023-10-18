@@ -16,9 +16,12 @@ import municion.*
 // agregar enemigos
 // pensar en agregar power ups para la segunda entrega
 program juego {
+		
 		game.width(25)
 		game.height(10)
 		game.cellSize(50)
+		
+		
 		
 		
 		game.title("Juego Pentacoders")
@@ -47,12 +50,28 @@ program juego {
 		keyboard.o().onPressDo({ jugador2.rotarADerecha() })
 		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })
 		keyboard.i().onPressDo({ jugador2.disparar() })
-		game.addVisual(jugador2)		
+		
+		
+		
+			
 
 		
-			// keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+		//keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
+		
+		game.addVisual(jugador2)	
 		game.addVisual(jugador3)
+		
 		game.showAttributes(jugador3)
+		
+		game.whenCollideDo(jugador2, { elemento => 
+    			elemento.soyMunicion() jugador2.sufrirDanio(20) 			
+    	})
+    	
+    	game.whenCollideDo(jugador3, { elemento => 
+    			elemento.soyMunicion() jugador3.sufrirDanio(20) 			
+    	})
+    	
+    	
 
 			// power up que te de trinagulols en vez de poelottias que den mas daño
 			// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve

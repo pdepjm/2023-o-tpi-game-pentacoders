@@ -1,3 +1,43 @@
+import jugadores.*
+
+
+describe "jugador" {
+	var jugador = new Jugador()
+	
+	var jugador2 = new Jugador()
+	
+	
+	
+	test "Puede disparar hacia abajo" {
+		
+		jugador2.position(jugador.position().up(-1))
+		
+		jugador.rotarADerecha()
+		jugador.rotarADerecha()
+		
+		//No encuentro manera de pensar el test
+		// Que le pegue a otro jugador 
+	}
+	
+	test "Puede disparar hacia arriba" {
+		// Que le pegue a otro jugador 
+	}
+	
+	test "Puede disparar hacia abajo" {
+		jugador.rotarADerecha()
+		
+		// Que le pegue a otro jugador 
+	}
+	
+	test "Puede disparar hacia abajo" {
+		jugador.rotarAIzquierda()
+		// Que le pegue a otro jugador 
+	}
+	
+	
+	
+}
+
 
 test "testX" {
 

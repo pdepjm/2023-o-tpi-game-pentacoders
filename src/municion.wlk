@@ -5,7 +5,7 @@ import municion.*
 // definicion clase pelota
 class Pelota {
 
-	var property position = game.origin()
+	var property position = game.origin()	//devuelve (0,0)
 
 	method image() = "pelota.png"
 
@@ -44,9 +44,11 @@ class Pelota {
 		}
 		
 	}
-
+	
+	method soyMunicion() = true
+ 
 }
-
+/*
 object juego{//para iniciar el juego por consola
 	method iniciar(){
 		
@@ -98,4 +100,4 @@ object juego{//para iniciar el juego por consola
 		
 	}
 }
-
+ */
