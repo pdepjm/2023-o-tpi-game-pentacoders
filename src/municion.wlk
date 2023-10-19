@@ -7,47 +7,48 @@ import municion.*
 class Pelota {
 
 	var property position = game.origin()	//devuelve (0,0)
+	var anguloPelota
+	var evento
 
 	method image() = "pelota.png"
+	
+	method angulo(nuevoAngulo){anguloPelota=nuevoAngulo}
+	method evento(nuevoEvento){evento=nuevoEvento}
 
-	method movete(angulo , nombreEvento) {
+	method movete() {
 		
-		if (angulo.equals(0)) {
+		if (anguloPelota.equals(0)) {
 			position = position.right(1)
-		} else if (angulo.equals(45)) {
+		} else if (anguloPelota.equals(45)) {
 			position = position.up(1).right(1)
-		} else if (angulo.equals(90)) {
+		} else if (anguloPelota.equals(90)) {
 			position = position.up(1)
-		} else if (angulo.equals(135)) {
+		} else if (anguloPelota.equals(135)) {
 			position = position.up(1).right(-1)
-		} else if (angulo.equals(180)) {
+		} else if (anguloPelota.equals(180)) {
 			position = position.right(-1)
-		} else if (angulo.equals(225)) {
+		} else if (anguloPelota.equals(225)) {
 			position = position.up(-1).right(-1)
-		} else if (angulo.equals(270)) {
+		} else if (anguloPelota.equals(270)) {
 			position = position.up(-1)
-		} else if (angulo.equals(315)) {
+		} else if (anguloPelota.equals(315)) {
 			position = position.up(-1).right(1)
 		}
 
-		if(self.position().y() == -1 || self.position().y() == game.height()){
-		//if(self.position().y() == 0 || self.position().y() == game.height()-1){
-			//game.say(jugador3, "final y")
-			game.removeTickEvent(nombreEvento)
-			game.removeVisual(self)
+		if(self.position().y() == -2 || self.position().y() == game.height()+1){
+			self.quitar()			
 		}
 		
-		else if(self.position().x() == -1 || self.position().x() == game.width()){
-		//else if(self.position().x() == 0 || self.position().x() == game.width()-1){ //para visualizar
-			//game.say(jugador3, "final x")
-			game.removeTickEvent(nombreEvento) 
-			game.removeVisual(self)
+		else if(self.position().x() == -2 || self.position().x() == game.width()){
+			self.quitar()
 		}
 		
 	}
 	
-	
-	
+	method quitar(){
+		game.removeTickEvent(evento)
+		game.removeVisual(self)
+	}
 	
 	
 	method soyMunicion() = true
@@ -106,3 +107,51 @@ object juego{//para iniciar el juego por consola
 	}
 }
  */
+ 
+ 
+ object juego{//para iniciar el juego por consola
+ 		 var jugador1 = new Jugador()
+		 var jugador2 = new Jugador()
+	method iniciar(){
+		
+		game.width(25)
+		game.height(10)
+		game.cellSize(50)
+		
+		
+		game.title("Juego Pentacoders")		
+		
+
+		
+
+		game.addVisual(jugador1)		
+		game.showAttributes(jugador1)
+
+		game.addVisual(jugador2)
+		game.showAttributes(jugador2)
+
+
+		
+		
+		game.start()
+		game.schedule(3000, { self.movimiento()})
+		
+		
+		
+	}
+	method movimiento(){
+				game.whenCollideDo(jugador1, { elemento => 
+			if(elemento.soyMunicion() ){
+				jugador1.sufrirDanio(30)
+				elemento.quitar()
+			}
+			
+		})
+		jugador1.moverDerecha()
+ 		jugador1.moverDerecha()
+ 		jugador2.disparar()
+ 		
+	}
+}
+ 
+ 

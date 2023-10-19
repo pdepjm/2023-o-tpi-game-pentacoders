@@ -3,87 +3,67 @@ import municion.*
 import wollok.game.*
 
 
-describe "municion" {
-	
-	
-	
+describe "Nave" {
+
 	var jugador1 = null
 	var jugador2 = null
 	
 	
 	method initialize(){
-		
-   		 game.clear()
-   		 
-   		 
+		game.clear()
    		 jugador1 = new Jugador()
 		 jugador2 = new Jugador()
-		 
-		 
-    
  	}
  	
  	
  	
- 	test "Puede disparar hacia abajo (270°)" {
+ 	test "Puede disparar hacia la derecha (0°)" {
  		game.addVisual(jugador1)
- 		game.addVisual(jugador2)
+ 		game.addVisual(jugador2) //el que se testea
  		
+ 		game.whenCollideDo(jugador1, { elemento => 
+			if(elemento.soyMunicion() ){
+				jugador1.sufrirDanio(30)
+				elemento.quitar()
+			}
+		})
+		
+ 		jugador1.moverDerecha()
+ 		jugador1.moverDerecha()
+		
+		
+ 		var vidaAnterior = jugador1.hp()
  		
+ 		jugador2.disparar()
+
  		
- 		
- 		jugador2.moverDerecha()
- 		jugador2.moverDerecha()
- 		
- 		var vidaAnterior = jugador2.hp()
- 		
- 		jugador1.disparar()
- 		
- 		assert.equals(vidaAnterior-30 , jugador2.hp() )
- 		
- 		
+ 		assert.equals(vidaAnterior-30 , jugador1.hp() )
   }
   
   
-  test "Rota 45° la nave" {
+  	test "Rota 45° la nave" {
  		game.addVisual(jugador1)
 	
- 		
  		jugador1.rotarADerecha()
  		
-		
- 		assert.equals(315, jugador1.angulo())	//Arranca en 360
- 		
-	
+ 		assert.equals(315, jugador1.angulo())	//Arranca en 0 o 360
  		
   }
   
   
- test "Se mueve hacia arriba"{
+ 	test "Se mueve hacia arriba"{
  	
- 	game.addVisual(jugador1)
- 	
- 	var posAnterior = jugador1.position()
- 	
- 	
- 	jugador1.moverArriba()
- 	
- 	
- 	assert.equals(posAnterior.up(1) , jugador1.position() )
+	 	game.addVisual(jugador1)
+	 	
+	 	var posAnterior = jugador1.position()
+	 	
+	 	
+	 	jugador1.moverArriba()
+	 	
+	 	
+	 	assert.equals(posAnterior.up(1) , jugador1.position() )
  }
-  
-  
-  
-  
-  
-/*
-  	test "Mi segundo test"{
-   		 game.addVisual(jugador2)
- 	
- }*/
 
- 	
- 	
 }
 	
 	

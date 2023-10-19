@@ -5,7 +5,7 @@ class Jugador {
 
 	var property position = game.center()
 	var imagen = "0.png"
-	var hp = 100
+	var hp = 500
 	var angulo = 0
 	
 	method angulo() = angulo
@@ -71,26 +71,28 @@ class Jugador {
 	}
 
 	method disparar() { // es un método del jugador porque la munición es del jugador
-		var municion = new Pelota()
-		var angulo2 = angulo
 		var nombreEvento = [1,2,3,4].anyOne().toString() + [5,6,7,8].anyOne().toString() + [9,10,11,12].anyOne().toString()	//Para tener nombres diferente entre los objetos
-		
-		municion.position(position)
-		municion.movete(angulo2,nombreEvento)
+		var municion = new Pelota(anguloPelota=angulo,evento=nombreEvento,position=self.position())
+
+		municion.movete()
 		game.addVisual(municion)
-		//se puede generar nombres ramdon y pasarle el nombre 
-		
-		game.onTick(40, nombreEvento, { municion.movete(angulo2,nombreEvento)})
+				
+		game.onTick(40, nombreEvento, { municion.movete()})
 	}
 
 
 	method sufrirDanio(danio){
 		hp -= danio
+		if(hp<=0){
+			self.quitar()
+		}
 	}
 	
 	method soyMunicion() = false
-
-
+	
+	method quitar(){
+		game.removeVisual(self)
+	}
 
 
 }

@@ -15,23 +15,31 @@ import municion.*
 // OPCIONAL:
 // agregar enemigos
 // pensar en agregar power ups para la segunda entrega
+
+// power up que te de trinagulols en vez de poelottias que den mas daño
+// cuando la municion colisiona con algo, el jugador, con el que disparar, o la pared, o los enemigos, deberia desaparecer
+
 program juego {
 		
 		game.width(25)
 		game.height(10)
 		game.cellSize(50)
 		
-		
-		
-		
 		game.title("Juego Pentacoders")
-		//var jugador1 = new Jugador()
-		
-		var jugador2 = new Jugador()
+
 		
 		var jugador3 = new Jugador()
+		jugador3.position(game.center().left(2))
 		
-			// movimiento jugador 1
+		var jugador2 = new Jugador()
+		jugador2.position(game.center().right(2))
+		jugador2.rotarAIzquierda()
+		jugador2.rotarAIzquierda()
+		jugador2.rotarAIzquierda()
+		jugador2.rotarAIzquierda()
+		
+		
+		// movimiento jugador 1
 		keyboard.w().onPressDo({ jugador3.moverArriba() })
 		keyboard.a().onPressDo({ jugador3.moverIzquierda() })
 		keyboard.s().onPressDo({ jugador3.moverAbajo() })
@@ -39,10 +47,8 @@ program juego {
 		keyboard.e().onPressDo({ jugador3.rotarADerecha() })
 		keyboard.q().onPressDo({ jugador3.rotarAIzquierda() })
 		keyboard.r().onPressDo({ jugador3.disparar() })
-			// comportamiento municion
-			// movimiento jugador 2
-
-
+		
+		// movimiento jugador 2
 		keyboard.up().onPressDo({ jugador2.moverArriba() })
 		keyboard.left().onPressDo({ jugador2.moverIzquierda() })
 		keyboard.down().onPressDo({ jugador2.moverAbajo() })
@@ -52,11 +58,6 @@ program juego {
 		keyboard.i().onPressDo({ jugador2.disparar() })
 		
 		
-		
-			
-
-		
-		//keyboard.backspace().onPressDo({ game.say(jugador1, "JuegoPausado") })
 		
 		game.addVisual(jugador2)	
 		game.addVisual(jugador3)
@@ -69,26 +70,19 @@ program juego {
 		game.whenCollideDo(jugador2, { elemento => 
 			if(elemento.soyMunicion() ){
 				jugador2.sufrirDanio(30)
-				game.removeVisual(elemento)
+				elemento.quitar()
 			}
 			
 		})
 		
 		
-    	
     	game.whenCollideDo(jugador3, { elemento =>
     		if(elemento.soyMunicion() ){
 				jugador3.sufrirDanio(30)
-				game.removeVisual(elemento)	
-				//Preguntar como borrar el evento cuando desaparece el visual porque no tenemos referencia al evento
+				elemento.quitar()
 			}
     		
     	})
     	
-    	
-
-			// power up que te de trinagulols en vez de poelottias que den mas daño
-			// cuando se presione la q y la e o cualquier secuancia parecida que implique rotar, cambia el sentido de la imagen y no se mueve
-			// cuando la municion colisiona con algo, el jugadcor, con el que disparar, o la pared, o los enemigos, deberia desaparecer
 		game.start()
 }
