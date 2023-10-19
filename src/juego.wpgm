@@ -61,14 +61,28 @@ program juego {
 		game.addVisual(jugador2)	
 		game.addVisual(jugador3)
 		
+		game.showAttributes(jugador2)
 		game.showAttributes(jugador3)
 		
+		
+		
 		game.whenCollideDo(jugador2, { elemento => 
-    			elemento.soyMunicion() jugador2.sufrirDanio(20) 			
-    	})
+			if(elemento.soyMunicion() ){
+				jugador2.sufrirDanio(30)
+				game.removeVisual(elemento)
+			}
+			
+		})
+		
+		
     	
-    	game.whenCollideDo(jugador3, { elemento => 
-    			elemento.soyMunicion() jugador3.sufrirDanio(20) 			
+    	game.whenCollideDo(jugador3, { elemento =>
+    		if(elemento.soyMunicion() ){
+				jugador3.sufrirDanio(30)
+				game.removeVisual(elemento)	
+				//Preguntar como borrar el evento cuando desaparece el visual porque no tenemos referencia al evento
+			}
+    		
     	})
     	
     	

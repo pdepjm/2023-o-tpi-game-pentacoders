@@ -7,6 +7,10 @@ class Jugador {
 	var imagen = "0.png"
 	var hp = 100
 	var angulo = 0
+	
+	method angulo() = angulo
+	
+	method hp() = hp
 
 	method image() = imagen
 
@@ -69,7 +73,7 @@ class Jugador {
 	method disparar() { // es un método del jugador porque la munición es del jugador
 		var municion = new Pelota()
 		var angulo2 = angulo
-		var nombreEvento = [1,2,3,4].anyOne().toString() + [5,6,7,8].anyOne().toString() + [9,10,11,12].anyOne().toString()
+		var nombreEvento = [1,2,3,4].anyOne().toString() + [5,6,7,8].anyOne().toString() + [9,10,11,12].anyOne().toString()	//Para tener nombres diferente entre los objetos
 		
 		municion.position(position)
 		municion.movete(angulo2,nombreEvento)
@@ -83,6 +87,8 @@ class Jugador {
 	method sufrirDanio(danio){
 		hp -= danio
 	}
+	
+	method soyMunicion() = false
 
 
 

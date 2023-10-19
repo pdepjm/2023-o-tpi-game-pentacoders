@@ -1,24 +1,121 @@
 import jugadores.*
+import municion.*
+import wollok.game.*
 
 
-describe "jugador" {
-	var jugador = new Jugador()
-	
-	var jugador2 = new Jugador()
+describe "municion" {
 	
 	
 	
-	test "Puede disparar hacia abajo" {
+	var jugador1 = null
+	var jugador2 = null
+	
+	
+	method initialize(){
 		
-		jugador2.position(jugador.position().up(-1))
+   		 game.clear()
+   		 
+   		 
+   		 jugador1 = new Jugador()
+		 jugador2 = new Jugador()
+		 
+		 
+    
+ 	}
+ 	
+ 	
+ 	
+ 	test "Puede disparar hacia abajo (270°)" {
+ 		game.addVisual(jugador1)
+ 		game.addVisual(jugador2)
+ 		
+ 		
+ 		
+ 		
+ 		jugador2.moverDerecha()
+ 		jugador2.moverDerecha()
+ 		
+ 		var vidaAnterior = jugador2.hp()
+ 		
+ 		jugador1.disparar()
+ 		
+ 		assert.equals(vidaAnterior-30 , jugador2.hp() )
+ 		
+ 		
+  }
+  
+  
+  test "Rota 45° la nave" {
+ 		game.addVisual(jugador1)
+	
+ 		
+ 		jugador1.rotarADerecha()
+ 		
 		
-		jugador.rotarADerecha()
-		jugador.rotarADerecha()
+ 		assert.equals(315, jugador1.angulo())	//Arranca en 360
+ 		
+	
+ 		
+  }
+  
+  
+ test "Se mueve hacia arriba"{
+ 	
+ 	game.addVisual(jugador1)
+ 	
+ 	var posAnterior = jugador1.position()
+ 	
+ 	
+ 	jugador1.moverArriba()
+ 	
+ 	
+ 	assert.equals(posAnterior.up(1) , jugador1.position() )
+ }
+  
+  
+  
+  
+  
+/*
+  	test "Mi segundo test"{
+   		 game.addVisual(jugador2)
+ 	
+ }*/
+
+ 	
+ 	
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * 
+	 * var municion= new Pelota()
+	 * 
+	 * test "Puede disparar hacia abajo (270°) " {
+		
+		game.onTick(100, "123", { municion.position()} )
+		
+		var posicionAnterior = municion.position()
+		
+		municion.position( game.at(2,2) ) 
+		
+		municion.movete(270,"123")
+		
+		//assert.equals(posicionAnterior.up(-1), municion.position() )
+		
+		assert.equals(1,municion.position().y())
+		
 		
 		//No encuentro manera de pensar el test
 		// Que le pegue a otro jugador 
-	}
-	
+	}*/
+	/* 
 	test "Puede disparar hacia arriba" {
 		// Que le pegue a otro jugador 
 	}
@@ -32,15 +129,15 @@ describe "jugador" {
 	test "Puede disparar hacia abajo" {
 		jugador.rotarAIzquierda()
 		// Que le pegue a otro jugador 
-	}
+	}*/
 	
 	
 	
-}
 
 
+/*  
 test "testX" {
 
 	assert.that(true)
 
-}
+}*/

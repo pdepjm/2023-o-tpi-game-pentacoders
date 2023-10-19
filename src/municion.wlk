@@ -2,6 +2,7 @@ import wollok.game.*
 import jugadores.*
 import municion.*
 
+
 // definicion clase pelota
 class Pelota {
 
@@ -44,6 +45,10 @@ class Pelota {
 		}
 		
 	}
+	
+	
+	
+	
 	
 	method soyMunicion() = true
  
