@@ -27,6 +27,7 @@ program juego {
 		
 		game.title("Juego Pentacoders")
 
+	//	var enemigo = new Enemigo()
 		
 		var jugador3 = new Jugador()
 		jugador3.position(game.center().left(2))
@@ -61,11 +62,15 @@ program juego {
 		
 		game.addVisual(jugador2)	
 		game.addVisual(jugador3)
+	//	game.addVisual(enemigo)
 		
 		game.showAttributes(jugador2)
 		game.showAttributes(jugador3)
 		
-		
+	//	game.onTick(900, "movimiento", { enemigo.movete() })
+	//	game.onTick(500, "disparar", { enemigo.disparar(90) })
+	//	game.onTick(520, "disparar", { enemigo.disparar(180) })
+	//	game.onTick(540, "disparar", { enemigo.disparar(270) })
 		
 		game.whenCollideDo(jugador2, { elemento => 
 			if(elemento.soyMunicion() ){
