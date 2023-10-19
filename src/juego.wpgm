@@ -16,8 +16,7 @@ import municion.*
 // agregar enemigos
 // pensar en agregar power ups para la segunda entrega
 
-// power up que te de trinagulols en vez de poelottias que den mas daño
-// cuando la municion colisiona con algo, el jugador, con el que disparar, o la pared, o los enemigos, deberia desaparecer
+
 
 program juego {
 		

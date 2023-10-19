@@ -25,7 +25,7 @@ describe "Nave" {
 			if(elemento.soyMunicion() ){
 				jugador1.sufrirDanio(30)
 				elemento.quitar()
-			}
+			} // para arreglar esto, primero hagan el cambio y luego testeen chocarseCon sin onCollide
 		})
 		
  		jugador1.moverDerecha()
@@ -51,7 +51,7 @@ describe "Nave" {
   }
   
   
- 	test "Se mueve hacia arriba"{
+ 	test "Cuando se mueve hacia arriba está en la posición correspondiente"{
  	
 	 	game.addVisual(jugador1)
 	 	
