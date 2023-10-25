@@ -1,6 +1,7 @@
 import wollok.game.*
 import jugadores.*
 import municion.*
+import visuales.* 
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -72,21 +73,15 @@ program juego {
 	//	game.onTick(540, "disparar", { enemigo.disparar(270) })
 		
 		game.whenCollideDo(jugador2, { elemento => 
-			if(elemento.soyMunicion() ){
-				jugador2.sufrirDanio(30)
-				elemento.quitar()
-			}
-			
+			elemento.chocasteCon(jugador2)
+			elemento.quitar()			
 		})
 		
 		
-    	game.whenCollideDo(jugador3, { elemento =>
-    		if(elemento.soyMunicion() ){
-				jugador3.sufrirDanio(30)
-				elemento.quitar()
-			}
-    		
-    	})
+    	game.whenCollideDo(jugador3, { elemento => 
+    		elemento.chocasteCon(jugador3)
+    		elemento.quitar()			
+		})
     	
 		game.start()
 }

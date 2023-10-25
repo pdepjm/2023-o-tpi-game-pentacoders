@@ -54,6 +54,10 @@ class Pelota {
 	
 	
 	method soyMunicion() = true
+	
+	method chocasteCon(jugador){
+		jugador.sufrirDanio(30)
+	}
  
 }
 

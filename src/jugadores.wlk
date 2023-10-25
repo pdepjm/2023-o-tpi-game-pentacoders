@@ -93,7 +93,7 @@ class Jugador {
 	method quitar(){
 		game.removeVisual(self)
 	}
-
+	
 
 }
 
