@@ -93,8 +93,9 @@ class Jugador {
 	method quitar(){
 		game.removeVisual(self)
 	}
-	
-
+	//VIDA
+	method text() = "                 " + hp.toString()
+	method textColor() = "000000"
 }
 
 /*
