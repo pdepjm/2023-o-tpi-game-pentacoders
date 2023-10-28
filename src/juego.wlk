@@ -2,6 +2,8 @@ import wollok.game.*
 import jugadores.*
 import municion.*
 import angulo.*
+import Ganador.*
+
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -30,10 +32,10 @@ object juego {
 		
 	//	var enemigo = new Enemigo()
 		
-		var jugador3 = new Jugador()
-		jugador3.position(game.center().left(2))
+		var jugador1 = new Jugador(nombre = "1")
+		jugador1.position(game.center().left(2))
 		
-		var jugador2 = new Jugador()
+		var jugador2 = new Jugador(nombre = "2")
 		
 		jugador2.position(game.center().right(2))
 		jugador2.rotarA(izquierda)
@@ -48,17 +50,17 @@ object juego {
 	
 		
 		// movimiento jugador 1
-		keyboard.w().onPressDo({ jugador3.moverArriba() })
-		keyboard.a().onPressDo({ jugador3.moverIzquierda() })
-		keyboard.s().onPressDo({ jugador3.moverAbajo() })
-		keyboard.d().onPressDo({ jugador3.moverDerecha() })
+		keyboard.w().onPressDo({ jugador1.moverArriba() })
+		keyboard.a().onPressDo({ jugador1.moverIzquierda() })
+		keyboard.s().onPressDo({ jugador1.moverAbajo() })
+		keyboard.d().onPressDo({ jugador1.moverDerecha() })
 		
-		keyboard.e().onPressDo({ jugador3.rotarA(derecha) })
-		keyboard.q().onPressDo({ jugador3.rotarA(izquierda) })
+		keyboard.e().onPressDo({ jugador1.rotarA(derecha) })
+		keyboard.q().onPressDo({ jugador1.rotarA(izquierda) })
 		
-		/*keyboard.e().onPressDo({ jugador3.rotarADerecha() })
-		keyboard.q().onPressDo({ jugador3.rotarAIzquierda() }) */
-		keyboard.r().onPressDo({ jugador3.disparar() })
+		/*keyboard.e().onPressDo({ jugador1.rotarADerecha() })
+		keyboard.q().onPressDo({ jugador1.rotarAIzquierda() }) */
+		keyboard.r().onPressDo({ jugador1.disparar() })
 		
 		// movimiento jugador 2
 		
@@ -77,17 +79,22 @@ object juego {
 
 		
 		
+		//const ganador = new ganador()
+		
 		
 		keyboard.i().onPressDo({ jugador2.disparar() })
 		
 		
+		//game.onTick(500, "ganador", {  ganador.gano() })
+		
+		
 		
 		game.addVisual(jugador2)	
-		game.addVisual(jugador3)
+		game.addVisual(jugador1)
 	//	game.addVisual(enemigo)
 		
 		game.showAttributes(jugador2)
-		game.showAttributes(jugador3)
+		game.showAttributes(jugador1)
 		
 		
 		
@@ -104,12 +111,20 @@ object juego {
 			elemento.quitar()
 		})
 				
-    	game.whenCollideDo(jugador3, { elemento => 
-    		elemento.chocasteCon(jugador3)
+    	game.whenCollideDo(jugador1, { elemento => 
+    		elemento.chocasteCon(jugador1)
     		elemento.quitar()			
 		})
     	
 		game.start()
 
 		}
+		
+		/*method eliminarJugador(jugador){
+			ganador.gano(jugador)
+		}*/
+		
+		
+		
+		
 }

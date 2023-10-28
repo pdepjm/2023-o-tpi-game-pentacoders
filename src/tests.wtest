@@ -11,8 +11,8 @@ describe "Nave" {
 	
 	method initialize(){
 		game.clear()
-   		 jugador1 = new Jugador()
-		 jugador2 = new Jugador()
+   		 jugador1 = new Nave()
+		 jugador2 = new Nave()
  	}
  	
  	

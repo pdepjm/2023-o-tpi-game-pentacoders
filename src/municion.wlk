@@ -46,7 +46,8 @@ class Pelota {
 		else if(self.position().x() == -2 || self.position().x() == game.width()){
 			self.quitar()
 		}
-	}	
+	}
+		
 	method quitar(){
 		game.removeTickEvent(evento)
 		game.removeVisual(self)
