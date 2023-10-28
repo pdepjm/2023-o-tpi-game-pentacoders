@@ -18,7 +18,7 @@ class Angulo {
 }
 
 
-object derecha {
+object horario {
 	
 	
 	
@@ -39,7 +39,7 @@ object derecha {
 }
 
 
-object izquierda {
+object antihorario {
 	
 	
 	

@@ -3,6 +3,7 @@ import municion.*
 import angulo.*
 import Ganador.*
 import juego.*
+import direcciones.*
 
 class Nave {
 
@@ -22,22 +23,27 @@ class Nave {
 	}
 	
 	
-	/*method mover(direccion) {
-		if ( !direccion.estaAlFinal() ){
-			position = direccion.position() 
+	
+	
+	method chocar() {	hp -= 20	}		
+	
+	
+	
+	
+	method mover(direccion){
+		
+		if( ! direccion.estaAlFinal(position)  ) {
+			position = direccion.coordenada(position)
 		}
 		
-	}*/
-	
-	method chocar() {	hp -= 20	}		method mover(direccion){
-		if( ! direccion.estaAlFinal(position)  ){
-		position = direccion.coordenada(position)
-		}
 		else {
 			game.say(self, "fin tablero")
 		}
 				
-		}
+	}
+		
+		
+		
  
 	method rotarA(direccionDeRotacion){
 		
@@ -94,7 +100,10 @@ class Enemigo inherits Nave{
 	method image() = "pelota.png"
 	
 	
-	
+	method moverRamdon(){
+        const direcciones = [arriba,abajo,izquierda,derecha]
+        self.mover(direcciones.anyOne())
+    }
 
 
 		
@@ -122,22 +131,7 @@ class Jugador inherits Nave {
 }
 
 
-object arriba{
-	method coordenada (posicion) = posicion.up(1)
-	method estaAlFinal(posicion) = posicion.y() == (game.height() - 1)
-}
-object abajo{
-	method coordenada (posicion) = posicion.down(1)
-	method estaAlFinal(posicion) = posicion.y() == 0
-}
-object derecha{
-	method coordenada (posicion) = posicion.right(1)
-	method estaAlFinal(posicion) = posicion.x() == (game.width() - 1)
-}
-object izquierda{
-	method coordenada (posicion) = posicion.left(1)
-	method estaAlFinal(posicion) = posicion.x() == 0
-}
+
 
 
 

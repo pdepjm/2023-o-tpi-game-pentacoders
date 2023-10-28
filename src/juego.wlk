@@ -3,7 +3,7 @@ import jugadores.*
 import municion.*
 import angulo.*
 import Ganador.*
-
+import direcciones.*
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -38,10 +38,10 @@ object juego {
 		var jugador2 = new Jugador(nombre = "2")
 		
 		jugador2.position(game.center().right(2))
-		jugador2.rotarA(izquierda)
-		jugador2.rotarA(izquierda)
-		jugador2.rotarA(izquierda)
-		jugador2.rotarA(izquierda)
+		jugador2.rotarA(antihorario)
+		jugador2.rotarA(antihorario)
+		jugador2.rotarA(antihorario)
+		jugador2.rotarA(antihorario)
 		
 		/*jugador2.rotarAIzquierda()
 		jugador2.rotarAIzquierda()
@@ -50,13 +50,13 @@ object juego {
 	
 		
 		// movimiento jugador 1
-		keyboard.w().onPressDo({ jugador3.mover(arriba) })
-		keyboard.a().onPressDo({ jugador3.mover(izquierda) })
-		keyboard.s().onPressDo({ jugador3.mover(abajo) })
-		keyboard.d().onPressDo({ jugador3.mover(derecha) })
+		keyboard.w().onPressDo({ jugador1.mover(arriba) })
+		keyboard.a().onPressDo({ jugador1.mover(izquierda) })
+		keyboard.s().onPressDo({ jugador1.mover(abajo) })
+		keyboard.d().onPressDo({ jugador1.mover(derecha) })
 		
-		keyboard.e().onPressDo({ jugador1.rotarA(derecha) })
-		keyboard.q().onPressDo({ jugador1.rotarA(izquierda) })
+		keyboard.e().onPressDo({ jugador1.rotarA(horario) })
+		keyboard.q().onPressDo({ jugador1.rotarA(antihorario) })
 		
 		/*keyboard.e().onPressDo({ jugador1.rotarADerecha() })
 		keyboard.q().onPressDo({ jugador1.rotarAIzquierda() }) */
@@ -65,8 +65,8 @@ object juego {
 		// movimiento jugador 2
 		
 		
-		keyboard.o().onPressDo({ jugador2.rotarA(derecha) })
-		keyboard.p().onPressDo({ jugador2.rotarA(izquierda) })
+		keyboard.o().onPressDo({ jugador2.rotarA(horario) })
+		keyboard.p().onPressDo({ jugador2.rotarA(antihorario) })
 		
 		/*keyboard.o().onPressDo({ jugador2.rotarADerecha() })
 		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })*/

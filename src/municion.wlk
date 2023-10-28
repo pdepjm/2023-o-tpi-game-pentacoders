@@ -38,6 +38,22 @@ class Pelota {
 		self.controlarPosicionTablero()
 		
 	}
+	
+	
+	
+	/*method mover(direccion){
+		
+		if( ! direccion.estaAlFinal(position)  ) {
+			position = direccion.coordenada(position)
+		}
+		
+		else {
+			game.say(self, "fin tablero")
+		}
+				
+	}*/
+	
+	
 	method controlarPosicionTablero(){
 		if(self.position().y() == -2 || self.position().y() == game.height()+1){
 			self.quitar()			
