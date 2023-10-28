@@ -48,10 +48,10 @@ object juego {
 	
 		
 		// movimiento jugador 1
-		keyboard.w().onPressDo({ jugador3.moverArriba() })
-		keyboard.a().onPressDo({ jugador3.moverIzquierda() })
-		keyboard.s().onPressDo({ jugador3.moverAbajo() })
-		keyboard.d().onPressDo({ jugador3.moverDerecha() })
+		keyboard.w().onPressDo({ jugador3.mover(arriba) })
+		keyboard.a().onPressDo({ jugador3.mover(izquierda) })
+		keyboard.s().onPressDo({ jugador3.mover(abajo) })
+		keyboard.d().onPressDo({ jugador3.mover(derecha) })
 		
 		keyboard.e().onPressDo({ jugador3.rotarA(derecha) })
 		keyboard.q().onPressDo({ jugador3.rotarA(izquierda) })
@@ -70,10 +70,10 @@ object juego {
 		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })*/
 		
 		
-		keyboard.up().onPressDo({ jugador2.moverArriba() })
-		keyboard.left().onPressDo({ jugador2.moverIzquierda() })
-		keyboard.down().onPressDo({ jugador2.moverAbajo() })
-		keyboard.right().onPressDo({ jugador2.moverDerecha() })
+		keyboard.up().onPressDo({ jugador2.mover(arriba) })
+		keyboard.left().onPressDo({ jugador2.mover(izquierda) })
+		keyboard.down().onPressDo({ jugador2.mover(abajo) })
+		keyboard.right().onPressDo({ jugador2.mover(derecha) })
 
 		
 		

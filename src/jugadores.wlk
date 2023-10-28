@@ -27,46 +27,16 @@ class Jugador {
 		
 	}*/
 	
-
+		method mover(direccion){
+		if( ! direccion.estaAlFinal(position)  ){
+		position = direccion.coordenada(position)
+		}
+		else {
+			game.say(self, "fin tablero")
+		}
+				
+		}
  
-	method moverDerecha() {
-		if( !(self.position().x() == (game.width() - 1)) ){
-			position = position.right(1)
-		}
-		else{
-			game.say(self, "fin derecha jugador")
-		}	
-	}
-
-	method moverIzquierda() {
-		if( !(self.position().x() == 0) ){
-			position = position.left(1)
-		}
-		else{
-			game.say(self, "fin izquierda jugador")
-		}
-	}
-
-	method moverArriba() {
-		if( !(self.position().y() == (game.height() - 1)) ){
-			position = position.up(1)
-		}
-		else{
-			game.say(self, "fin arriba jugador")
-		}
-	}
-
-	method moverAbajo() {
-		if( !(self.position().y() == 0) ){
-			position = position.down(1)
-		}
-		else{
-			game.say(self, "fin abajo jugador")
-		}
-	}
-	
-
-
 	method rotarA(direccionDeRotacion){
 		
 		angulo = direccionDeRotacion.anguloCorroborado(self,angulo)
@@ -171,5 +141,23 @@ class Enemigo{
 	}	
 }
 */
+
+object arriba{
+	method coordenada (posicion) = posicion.up(1)
+	method estaAlFinal(posicion) = posicion.y() == (game.height() - 1)
+}
+object abajo{
+	method coordenada (posicion) = posicion.down(1)
+	method estaAlFinal(posicion) = posicion.y() == 0
+}
+object derecha{
+	method coordenada (posicion) = posicion.right(1)
+	method estaAlFinal(posicion) = posicion.x() == (game.width() - 1)
+}
+object izquierda{
+	method coordenada (posicion) = posicion.left(1)
+	method estaAlFinal(posicion) = posicion.x() == 0
+}
+
 
 
