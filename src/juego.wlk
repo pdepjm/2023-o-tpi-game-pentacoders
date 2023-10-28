@@ -1,6 +1,7 @@
 import wollok.game.*
 import jugadores.*
 import municion.*
+import angulo.*
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -35,10 +36,15 @@ object juego {
 		var jugador2 = new Jugador()
 		
 		jugador2.position(game.center().right(2))
+		jugador2.rotarA(izquierda)
+		jugador2.rotarA(izquierda)
+		jugador2.rotarA(izquierda)
+		jugador2.rotarA(izquierda)
+		
+		/*jugador2.rotarAIzquierda()
 		jugador2.rotarAIzquierda()
-		jugador2.rotarAIzquierda()
-		jugador2.rotarAIzquierda()
-		jugador2.rotarAIzquierda()
+		* jugador2.rotarAIzquierda()
+		jugador2.rotarAIzquierda()*/
 	
 		
 		// movimiento jugador 1
@@ -46,17 +52,32 @@ object juego {
 		keyboard.a().onPressDo({ jugador3.moverIzquierda() })
 		keyboard.s().onPressDo({ jugador3.moverAbajo() })
 		keyboard.d().onPressDo({ jugador3.moverDerecha() })
-		keyboard.e().onPressDo({ jugador3.rotarADerecha() })
-		keyboard.q().onPressDo({ jugador3.rotarAIzquierda() })
+		
+		keyboard.e().onPressDo({ jugador3.rotarA(derecha) })
+		keyboard.q().onPressDo({ jugador3.rotarA(izquierda) })
+		
+		/*keyboard.e().onPressDo({ jugador3.rotarADerecha() })
+		keyboard.q().onPressDo({ jugador3.rotarAIzquierda() }) */
 		keyboard.r().onPressDo({ jugador3.disparar() })
 		
 		// movimiento jugador 2
+		
+		
+		keyboard.o().onPressDo({ jugador2.rotarA(derecha) })
+		keyboard.p().onPressDo({ jugador2.rotarA(izquierda) })
+		
+		/*keyboard.o().onPressDo({ jugador2.rotarADerecha() })
+		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })*/
+		
+		
 		keyboard.up().onPressDo({ jugador2.moverArriba() })
 		keyboard.left().onPressDo({ jugador2.moverIzquierda() })
 		keyboard.down().onPressDo({ jugador2.moverAbajo() })
 		keyboard.right().onPressDo({ jugador2.moverDerecha() })
-		keyboard.o().onPressDo({ jugador2.rotarADerecha() })
-		keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })
+
+		
+		
+		
 		keyboard.i().onPressDo({ jugador2.disparar() })
 		
 		

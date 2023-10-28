@@ -1,5 +1,6 @@
 import wollok.game.*
 import municion.*
+import angulo.*
 
 class Jugador {
 
@@ -17,7 +18,17 @@ class Jugador {
 	method cambiarImagen(nuevaImagen) {
 		imagen = nuevaImagen + ".png"
 	}
+	
+	
+	/*method mover(direccion) {
+		if ( !direccion.estaAlFinal() ){
+			position = direccion.position() 
+		}
+		
+	}*/
+	
 
+ 
 	method moverDerecha() {
 		if( !(self.position().x() == (game.width() - 1)) ){
 			position = position.right(1)
@@ -53,8 +64,20 @@ class Jugador {
 			game.say(self, "fin abajo jugador")
 		}
 	}
+	
 
-	method rotarADerecha() { // si se toca la e
+
+	method rotarA(direccionDeRotacion){
+		
+		angulo = direccionDeRotacion.anguloCorroborado(self,angulo)
+		self.cambiarImagen(angulo.toString()) 
+	
+	}
+	
+	
+		
+
+	/*method rotarADerecha() { // si se toca la e
 		angulo -= 45
 		if (angulo.equals(-45)) {
 			angulo = 315
@@ -68,7 +91,7 @@ class Jugador {
 			angulo = 0
 		}
 		self.cambiarImagen(angulo.toString())
-	}
+	}*/
 
 	method disparar() { // es un método del jugador porque la munición es del jugador
 		var nombreEvento = [1,2,3,4].anyOne().toString() + [5,6,7,8].anyOne().toString() + [9,10,11,12].anyOne().toString()	//Para tener nombres diferente entre los objetos
@@ -86,6 +109,11 @@ class Jugador {
 		if(hp<=0){
 			self.quitar()
 		}
+	}
+	
+	method chocasteCon(jugador){
+		self.sufrirDanio(15)
+		jugador.sufrirDanio(25)
 	}
 	
 	method soyMunicion() = false
