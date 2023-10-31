@@ -8,10 +8,11 @@ import direcciones.*
 class Nave {
 
 	var property position = game.center()
-	var imagen = "0.png"
+	var imagen
 	var hp = 500
 	var angulo = 0
 	var estaMuerto = false
+	var numeroNave
 
 	method angulo() = angulo
 
@@ -19,8 +20,8 @@ class Nave {
 
 	method image() = imagen
 
-	method cambiarImagen(nuevaImagen) {
-		imagen = nuevaImagen + ".png"
+	method cambiarImagen(nuevoAngulo) {
+		imagen = "Jugador" + numeroNave + "_" + nuevoAngulo + ".png"
 	}
 
 	method chocar() {
@@ -74,7 +75,7 @@ class Enemigo inherits Nave {
 
 	// var property position = game.center()	//devuelve (0,0)
 	// var movimiento = [0,45,90,135,180,225,270,315]
-	method image() = "pelota.png"
+	method image() = "enemigo.png"
 
 	method moverRamdon() {
 		const direcciones = [ arriba, abajo, izquierda, derecha ]
@@ -85,13 +86,11 @@ class Enemigo inherits Nave {
 
 class Jugador inherits Nave {
 
-	var nombre = "0"
-
 	override method sufrirDanio(danio) {
 		hp -= danio
 		if (hp <= 0) {
 			self.quitar()
-			ganador.gano(nombre)
+			ganador.gano(numeroNave)
 		// juego.eliminarJugador(self)
 		}
 	}

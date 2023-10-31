@@ -9,8 +9,8 @@ describe "Nave" {
 
 	method initialize() {
 		game.clear()
-		jugador1 = new Nave()
-		jugador2 = new Nave()
+		jugador1 = new Nave(numeroNave="1", imagen = "Jugador1_0.png")
+		jugador2 = new Nave(numeroNave="2", imagen = "Jugador2_180.png")
 	}
 
 	test "Puede disparar hacia la derecha (0°)" {

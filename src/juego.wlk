@@ -4,6 +4,7 @@ import municion.*
 import angulo.*
 import Ganador.*
 import direcciones.*
+import sonidos.*
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -26,10 +27,10 @@ object juego {
 		game.cellSize(50)
 		game.title("Juego Pentacoders")
 			// var enemigo = new Enemigo()
-		var jugador1 = new Jugador(nombre = "1")
+		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_0.png")
 		jugador1.position(game.center().left(2))
-		var jugador2 = new Jugador(nombre = "2")
-		var enemigo = new Enemigo()
+		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_180.png")
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
 		jugador2.position(game.center().right(2))
 		jugador2.rotarA(antihorario)
 		jugador2.rotarA(antihorario)
@@ -48,7 +49,9 @@ object juego {
 		keyboard.q().onPressDo({ jugador1.rotarA(antihorario)})
 			/*keyboard.e().onPressDo({ jugador1.rotarADerecha() })
 			 keyboard.q().onPressDo({ jugador1.rotarAIzquierda() }) */
-		keyboard.r().onPressDo({ jugador1.disparar()})
+		keyboard.r().onPressDo({ jugador1.disparar()
+			disparoSonido.play()
+		})
 			// movimiento jugador 2
 		keyboard.o().onPressDo({ jugador2.rotarA(horario)})
 		keyboard.p().onPressDo({ jugador2.rotarA(antihorario)})
@@ -59,7 +62,9 @@ object juego {
 		keyboard.down().onPressDo({ jugador2.mover(abajo)})
 		keyboard.right().onPressDo({ jugador2.mover(derecha)})
 			// const ganador = new ganador()
-		keyboard.i().onPressDo({ jugador2.disparar()})
+		keyboard.i().onPressDo({ jugador2.disparar()
+			disparoSonido.play()
+		})
 			// game.onTick(500, "ganador", {  ganador.gano() })
 		game.addVisual(jugador2)
 		game.addVisual(jugador1)
@@ -70,6 +75,10 @@ object juego {
 		game.onTick(500, "disparar", { enemigo.disparar()})
 		game.whenCollideDo(jugador2, { elemento =>
 			elemento.chocasteCon(jugador2)
+			elemento.quitar()
+		})
+		game.whenCollideDo(jugador1, { elemento =>
+			elemento.chocasteCon(jugador1)
 			elemento.quitar()
 		})
 		game.start()
