@@ -3,38 +3,49 @@ import jugadores.*
 import municion.*
 
 // definicion clase pelota
-class Pelota {
+class Municion {
 
 	var property position = game.origin() // devuelve (0,0)
-	var anguloPelota
+	var anguloMunicion 
 	var evento
 
 	method image() = "pelota.png"
 
 	method angulo(nuevoAngulo) {
-		anguloPelota = nuevoAngulo
+		anguloMunicion = nuevoAngulo
 	}
 
 	method evento(nuevoEvento) {
 		evento = nuevoEvento
 	}
+	method movimiento(angul){
+		
+	}
+
+
+method mover(){
+position = anguloMunicion.movimiento(position)
+}
+
 
 	method movete() {
-		if (anguloPelota.equals(0)) {
+		
+		self.movimiento(anguloMunicion)
+		if (anguloMunicion.equals(0)) {
 			position = position.right(1)
-		} else if (anguloPelota.equals(45)) {
+		} else if (anguloMunicion.equals(45)) {
 			position = position.up(1).right(1)
-		} else if (anguloPelota.equals(90)) {
+		} else if (anguloMunicion.equals(90)) {
 			position = position.up(1)
-		} else if (anguloPelota.equals(135)) {
+		} else if (anguloMunicion.equals(135)) {
 			position = position.up(1).right(-1)
-		} else if (anguloPelota.equals(180)) {
+		} else if (anguloMunicion.equals(180)) {
 			position = position.right(-1)
-		} else if (anguloPelota.equals(225)) {
+		} else if (anguloMunicion.equals(225)) {
 			position = position.up(-1).right(-1)
-		} else if (anguloPelota.equals(270)) {
+		} else if (anguloMunicion.equals(270)) {
 			position = position.up(-1)
-		} else if (anguloPelota.equals(315)) {
+		} else if (anguloMunicion.equals(315)) {
 			position = position.up(-1).right(1)
 		}
 		self.controlarPosicionTablero()
@@ -69,4 +80,10 @@ class Pelota {
 	}
 
 }
+class Triangulo inherits Municion{
+	
+	override method image() = "triangulo.png"
+}
+
+
 

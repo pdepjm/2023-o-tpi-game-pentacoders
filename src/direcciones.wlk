@@ -4,7 +4,7 @@ class Direccion {
 
 	//method estaAlFinal(posicion) = (posicion.y() == (game.height() - 1)) or (posicion.y() == 0) or (posicion.x() == (game.width() - 1)) or (posicion.x() == 0)
 	// tuvimos que comentar esto, ya que cuando x=0 o y=0 o llegaba a loslimites se dejaba de mover la nave
-	// volvimos a como teniamos antes 
+	// volvimos a como teniamos antes
 }
 
 object arriba inherits Direccion {
