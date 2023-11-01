@@ -209,8 +209,8 @@ object juego {
 		game.showAttributes(jugador1)
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
 		game.onTick(500, "disparar", { enemigo.disparar()})
-		/* 
-		game.whenCollideDo(jugador2, { elemento =>
+		
+		/*game.whenCollideDo(jugador2, { elemento =>
 			if(elemento == triangulo){
 				elemento.cambiarDisparo(jugador2)
 				elemento.quitar()
@@ -228,6 +228,14 @@ object juego {
 			elemento.quitar()
 		})*/
 		
+		game.whenCollideDo(jugador2, { elemento =>
+			elemento.chocasteCon(jugador2)
+			elemento.quitar()
+		})
+		game.whenCollideDo(jugador1, { elemento =>
+			elemento.chocasteCon(jugador1)
+			elemento.quitar()
+		})
 		
 	}
 	
