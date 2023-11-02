@@ -5,6 +5,7 @@ import angulo.*
 import Ganador.*
 import direcciones.*
 import sonidos.*
+import powerUps.*
 
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
@@ -166,7 +167,7 @@ object juego {
 		jugador1.position(game.center().left(2))
 		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_180.png")
 		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
-		//var triangulo = new PowerUp()
+		var triangulo = new Triangulo()
 		jugador2.position(game.center().right(2))
 		jugador2.rotarA(antihorario)
 		jugador2.rotarA(antihorario)
@@ -210,7 +211,7 @@ object juego {
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
 		game.onTick(500, "disparar", { enemigo.dispararDos(0) enemigo.dispararDos(180)})
 		
-		/*game.whenCollideDo(jugador2, { elemento =>
+		game.whenCollideDo(jugador2, { elemento =>
 			if(elemento == triangulo){
 				elemento.cambiarDisparo(jugador2)
 				elemento.quitar()
@@ -218,7 +219,7 @@ object juego {
 			elemento.chocasteCon(jugador2)
 			elemento.quitar()
 		})
-		game.onTick(3000,"agregarTriangulo",{game.addVisual(triangulo)})
+		game.schedule(3000,{game.addVisual(triangulo)})
 		game.whenCollideDo(jugador1, { elemento =>
 			if(elemento == triangulo){
 				elemento.cambiarDisparo(jugador1)
@@ -226,7 +227,7 @@ object juego {
 			}
 			elemento.chocasteCon(jugador1)
 			elemento.quitar()
-		})*/
+		})
 		
 		game.whenCollideDo(jugador2, { elemento =>
 			elemento.chocasteCon(jugador2)

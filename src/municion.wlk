@@ -81,11 +81,11 @@ position = anguloMunicion.movimiento(position)
 	}
 
 }
-class Triangulo inherits Municion{
+class Triangulos inherits Municion{
 	
 	override method image() = "triangulo.png"
 	override method chocasteCon(jugador) {
-		jugador.sufrirDanio(90)
+		jugador.sufrirDanio(60)
 	}
 }
 
