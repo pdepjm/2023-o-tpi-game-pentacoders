@@ -34,6 +34,10 @@ object juego {
 			cantidadJugadores = 2
 			self.dosJugadores()
 		}
+		const fondo = game.sound("musicaFondo.mp3")
+		fondo.shouldLoop(true)
+		fondo.volume(0.5) 
+		fondo.play()
 	}
 
 	method setear() {
