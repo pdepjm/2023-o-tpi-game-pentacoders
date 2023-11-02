@@ -158,8 +158,10 @@ object juego {
 			elemento.chocasteCon(jugador2)
 			//elemento.quitar()----borraba a los jugadores y enemigo
 		})
-		game.schedule(3000, { game.addVisual(triangulo)})
-		game.schedule(2000, { game.addVisual(vida)})
+		game.schedule(8000, { game.addVisual(triangulo)})
+		game.schedule(20000, { game.addVisual(vida)})
+		
+		
 		game.whenCollideDo(jugador1, { elemento =>
 			if (elemento == triangulo) {
 				elemento.cambiarDisparo(jugador1)
