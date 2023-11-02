@@ -36,7 +36,7 @@ object juego {
 		}
 		const fondo = game.sound("musicaFondo.mp3")
 		fondo.shouldLoop(true)
-		fondo.volume(0.5) 
+		fondo.volume(0.5)
 		fondo.play()
 	}
 
@@ -57,28 +57,27 @@ object juego {
 			self.iniciar()
 		})
 		game.addVisual(menu)
-
 	}
 
 	method unJugador() {
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
 		jugador1.position(game.center().left(2))
-		var enemigo = new Enemigo1Jugador(position = game.at((0..game.width()).anyOne() , (0..game.height()).anyOne()),numeroNave = "0", imagen = "enemigo.png")
-		var enemigo2 = new Enemigo1Jugador(position = game.at((0..game.width()).anyOne() , (0..game.height()).anyOne()),numeroNave = "0", imagen = "enemigo.png")
-		var enemigo3 = new Enemigo1Jugador(position = game.at((0..game.width()).anyOne() , (0..game.height()).anyOne()),numeroNave = "0", imagen = "enemigo.png")
+		var enemigo = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
+		var enemigo2 = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
+		var enemigo3 = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
 		game.addVisual(enemigo)
 		game.addVisual(enemigo2)
 		game.addVisual(enemigo3)
 		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda)
 			enemigo.dispararDos(derecha)
 		})
-		game.whenCollideDo(enemigo, { elemento => elemento.chocasteCon(enemigo) 	})
-		game.whenCollideDo(enemigo2, { elemento => elemento.chocasteCon(enemigo2) 	})
-		game.whenCollideDo(enemigo3, { elemento => elemento.chocasteCon(enemigo3) 	})
-			game.onTick(500, "disparar", { enemigo2.dispararDos(arriba)
+		game.whenCollideDo(enemigo, { elemento => elemento.chocasteCon(enemigo)})
+		game.whenCollideDo(enemigo2, { elemento => elemento.chocasteCon(enemigo2)})
+		game.whenCollideDo(enemigo3, { elemento => elemento.chocasteCon(enemigo3)})
+		game.onTick(500, "disparar", { enemigo2.dispararDos(arriba)
 			enemigo.dispararDos(abajo)
 		})
-			game.onTick(500, "disparar", { enemigo3.dispararDos(izquierda)
+		game.onTick(500, "disparar", { enemigo3.dispararDos(izquierda)
 			enemigo.dispararDos(derecha)
 		})
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
@@ -103,7 +102,6 @@ object juego {
 	}
 
 	method dosJugadores() {
-		
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
 		jugador1.position(game.center().left(2))
 		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda)
@@ -111,7 +109,6 @@ object juego {
 		var triangulo = new Triangulo()
 		var vida = new Vida()
 		jugador2.position(game.center().right(2))
-		
 			// movimiento jugador 1
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
@@ -156,12 +153,10 @@ object juego {
 				elemento.quitar()
 			}
 			elemento.chocasteCon(jugador2)
-			//elemento.quitar()----borraba a los jugadores y enemigo
+		// elemento.quitar()----borraba a los jugadores y enemigo
 		})
 		game.schedule(8000, { game.addVisual(triangulo)})
 		game.schedule(20000, { game.addVisual(vida)})
-		
-		
 		game.whenCollideDo(jugador1, { elemento =>
 			if (elemento == triangulo) {
 				elemento.cambiarDisparo(jugador1)
@@ -171,10 +166,10 @@ object juego {
 				elemento.quitar()
 			}
 			elemento.chocasteCon(jugador1)
-			//elemento.quitar()----borraba a los jugadores y enemigo
+		// elemento.quitar()----borraba a los jugadores y enemigo
 		})
-		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2) 	})
-		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1) 	})
+		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
+		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
 	}
 
 }
