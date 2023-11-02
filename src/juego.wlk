@@ -217,7 +217,7 @@ object juego {
 				elemento.quitar()
 			}
 			elemento.chocasteCon(jugador2)
-			elemento.quitar()
+			//elemento.quitar()----borraba a los jugadores y enemigo
 		})
 		game.schedule(3000,{game.addVisual(triangulo)})
 		game.whenCollideDo(jugador1, { elemento =>
@@ -226,16 +226,16 @@ object juego {
 				elemento.quitar()
 			}
 			elemento.chocasteCon(jugador1)
-			elemento.quitar()
+			//elemento.quitar()----borraba a los jugadores y enemigo
 		})
 		
 		game.whenCollideDo(jugador2, { elemento =>
 			elemento.chocasteCon(jugador2)
-			
+			//elemento.quitar()
 		})
 		game.whenCollideDo(jugador1, { elemento =>
 			elemento.chocasteCon(jugador1)
-			
+			//elemento.quitar()
 		})
 		
 	}

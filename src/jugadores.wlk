@@ -84,8 +84,8 @@ class Nave {
 	
 	method chocasteCon(jugador){
 			
-		/*jugador.sufrirDanio(2)
-		self.sufrirDanio(1)*/
+		jugador.sufrirDanio(2)
+		self.sufrirDanio(1)
 	}
 
 }
