@@ -2,10 +2,10 @@ import wollok.game.*
 import jugadores.*
 import municion.*
 
-class PowerUp{
+class Triangulo{
 	var property position = game.center()
 
-	method image() = "triangulo1.png"
+	method image() = "powerUp.png"
 
 
 	method cambiarDisparo(jugador){

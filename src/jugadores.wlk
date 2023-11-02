@@ -13,6 +13,7 @@ class Nave {
 	var angulo = 0
 	var estaMuerto = false
 	var numeroNave
+	var balas = 0
 
 	method angulo() = angulo
 
@@ -27,7 +28,11 @@ class Nave {
 	method chocar() {
 		hp -= 20
 	}
-
+	
+	method cambiarBalas(bala){
+		balas = bala
+	}
+	
 	method mover(direccion) {
 		if (!direccion.estaAlFinal(position)) {
 			position = direccion.coordenada(position)
@@ -35,12 +40,20 @@ class Nave {
 		}
 	}
 
+	method conseguirBala(anguloRecibido,eventoRecibido){
+		if(balas == 0 ){
+			 return new Municion(anguloMunicion = anguloRecibido, evento = eventoRecibido, position = self.position())
+		}
+		else{
+			return  new Triangulos(anguloMunicion = anguloRecibido, evento = eventoRecibido, position = self.position())
+		}
+	}
 	method rotarA(direccionDeRotacion) {
 		angulo = direccionDeRotacion.anguloCorroborado(self, angulo)
 		self.cambiarImagen(angulo.toString())
 	}
 	method crearMunicion(anguloRecibido, nombreEvento) {
-        var municion = new Municion(anguloMunicion = anguloRecibido, evento = nombreEvento, position = self.position())
+        var municion = self.conseguirBala(anguloRecibido,nombreEvento)
         municion.movete()
         game.addVisual(municion)
         game.onTick(40, nombreEvento, { municion.movete() })
