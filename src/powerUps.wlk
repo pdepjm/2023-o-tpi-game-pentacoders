@@ -3,7 +3,7 @@ import jugadores.*
 import municion.*
 
 class PowerUp{
-	var property position = game.at((0..game.width()).anyOne() , (0..game.height()).anyOne())
+	var property position = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
 
 	method image() = "powerUp.png"
 
