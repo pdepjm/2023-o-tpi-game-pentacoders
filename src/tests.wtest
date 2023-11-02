@@ -1,6 +1,9 @@
 import jugadores.*
 import municion.*
 import wollok.game.*
+import direcciones.*
+import angulo.*
+
 
 describe "Nave" {
 
@@ -16,31 +19,102 @@ describe "Nave" {
 	test "Puede disparar hacia la derecha (0°)" {
 		game.addVisual(jugador1)
 		game.addVisual(jugador2) // el que se testea
-		game.whenCollideDo(jugador1, { elemento =>
+		/*game.whenCollideDo(jugador1, { elemento =>
 			if (elemento.soyMunicion()) {
 				jugador1.sufrirDanio(30)
 				elemento.quitar()
-			} // para arreglar esto, primero hagan el cambio y luego testeen chocarseCon sin onCollide
+			}// para arreglar esto, primero hagan el cambio y luego testeen chocarseCon sin onCollide
+		})*/
+		game.whenCollideDo(jugador2, { elemento =>
+			elemento.chocasteCon(jugador2)
+			elemento.quitar()
 		})
-		jugador1.moverDerecha()
-		jugador1.moverDerecha()
+		
+		
+		
+		jugador1.mover(derecha)
+		jugador1.mover(derecha)
 		var vidaAnterior = jugador1.hp()
 		jugador2.disparar()
 		assert.equals(vidaAnterior - 30, jugador1.hp())
 	}
+	
+	
+	
+	test "Se mueve a la Izquierda"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(izquierda)
+		assert.equals(posAnterior.left(1), jugador1.position())
+	}
+	
+	test "Se mueve a la Derecha"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(derecha)
+		assert.equals(posAnterior.right(1), jugador1.position())
+	}
+	
+	test "Se mueve para Abajo"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(abajo)
+		assert.equals(posAnterior.up(-1), jugador1.position())
+	}
+	
+	test "Se mueve para Arriba"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(arriba)
+		assert.equals(posAnterior.up(1), jugador1.position())
+	}
+	
+	test "Se mueve para Arriba y a la Derecha"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(arribaDerecha)
+		assert.equals(posAnterior.up(1).right(1), jugador1.position())
+	}
+	
+	test "Se mueve para Arriba y a la Izquierda"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(arribaIzquierda)
+		assert.equals(posAnterior.up(1).left(1), jugador1.position())
+	}
+	
+	test "Se mueve para Abajo y a la Derecha"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(abajoDerecha)
+		assert.equals(posAnterior.up(-1).right(1), jugador1.position())
+	}
+	
+	test "Se mueve para Abajo y a la Izquierda"{
+		var posAnterior = jugador1.position()
+		jugador1.mover(abajoIzquierda)
+		assert.equals(posAnterior.up(-1).left(1), jugador1.position())
+	}
+	
+	
+	
 
 	test "Rota 45° la nave" {
 		game.addVisual(jugador1)
-		jugador1.rotarADerecha()
+		jugador1.rotarA(horario)
 		assert.equals(315, jugador1.angulo()) // Arranca en 0 o 360
 	}
+	
+	
+	
+	
+	
+	
 
 	test "Cuando se mueve hacia arriba está en la posición correspondiente" {
-		game.addVisual(jugador1)
+		//game.addVisual(jugador1)	no se pone?
 		var posAnterior = jugador1.position()
-		jugador1.moverArriba()
+		jugador1.mover(arriba)
 		assert.equals(posAnterior.up(1), jugador1.position())
 	}
+	
+	
+	
+	
+	
 
 }
 

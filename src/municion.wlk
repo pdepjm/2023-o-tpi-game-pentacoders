@@ -77,6 +77,7 @@ position = anguloMunicion.movimiento(position)
 
 	method chocasteCon(jugador) {
 		jugador.sufrirDanio(30)
+		self.quitar()
 	}
 
 }

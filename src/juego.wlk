@@ -230,11 +230,11 @@ object juego {
 		
 		game.whenCollideDo(jugador2, { elemento =>
 			elemento.chocasteCon(jugador2)
-			elemento.quitar()
+			
 		})
 		game.whenCollideDo(jugador1, { elemento =>
 			elemento.chocasteCon(jugador1)
-			elemento.quitar()
+			
 		})
 		
 	}

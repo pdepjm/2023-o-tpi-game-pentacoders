@@ -44,23 +44,29 @@ object arribaDerecha inherits Direccion {
 
 	method coordenada(posicion) = posicion.up(1).right(1)
 
+	method estaAlFinal(posicion) = (posicion.x() == (game.width() - 1) ) and ( posicion.y() == (game.height() - 1) )
+
 }
 
 object arribaIzquierda inherits Direccion {
 
-	method coordenada(posicion) = posicion.up(1).left(1)
+	method coordenada(posicion) = posicion.up(1).left(1) 
 
+	method estaAlFinal(posicion) = (posicion.x() == (game.width() - 1) ) and ( posicion.x() == 0 )
 }
 
 object abajoIzquierda inherits Direccion {
 
-	method coordenada(posicion) = posicion.down(1).left(1)
+	method coordenada(posicion) = posicion.down(1).left(1) 
+	
+	method estaAlFinal(posicion) =  posicion.y() == 0 and posicion.y() == 0
 
 }
 
 object abajoDerecha inherits Direccion {
 
 	method coordenada(posicion) = posicion.down(1).right(1)
-
-}
+	
+	method estaAlFinal(posicion) =  posicion.y() == 0 and ( posicion.y() == (game.height() - 1) )
+}	
 

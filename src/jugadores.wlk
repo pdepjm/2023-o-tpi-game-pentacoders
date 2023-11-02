@@ -68,6 +68,12 @@ class Nave {
 	method text() = "                 " + hp.toString()
 
 	method textColor() = "000000"
+	
+	method chocasteCon(jugador){
+			
+		/*jugador.sufrirDanio(2)
+		self.sufrirDanio(1)*/
+	}
 
 }
 
@@ -89,6 +95,8 @@ class Enemigo inherits Nave {
 		var nombreEvento = [1, 2, 3, 4].anyOne().toString() + [5, 6, 7, 8].anyOne().toString() + [9, 10, 11, 12].anyOne().toString()
         self.crearMunicion(angulo2, nombreEvento)
 	}
+	
+	
 	
 
 }
