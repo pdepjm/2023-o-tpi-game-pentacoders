@@ -95,6 +95,8 @@ class Nave {
 			
 		jugador.sufrirDanio(2)
 		self.sufrirDanio(1)
+		
+		
 	}
 
 }

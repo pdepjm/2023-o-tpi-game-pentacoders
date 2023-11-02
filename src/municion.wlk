@@ -74,7 +74,7 @@ class Municion {
 
 	method chocasteCon(jugador) {
 		jugador.sufrirDanio(30)
-		//self.quitar()
+		self.quitar()
 	}
 
 	method evento() = evento

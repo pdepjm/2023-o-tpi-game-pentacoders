@@ -221,8 +221,8 @@ object juego {
 			elemento.chocasteCon(jugador1)
 			//elemento.quitar()----borraba a los jugadores y enemigo
 		})
-		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
-		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
+		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2) 	})
+		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1) 	})
 	}
 
 }
