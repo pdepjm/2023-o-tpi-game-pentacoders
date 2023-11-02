@@ -1,29 +1,32 @@
 import jugadores.*
+import direcciones.*
 
 class Angulo {
+	var direcciones = [arriba,arribaDerecha,derecha,abajoDerecha,abajo,abajoIzquierda,izquierda,arribaIzquierda]
+	var contador = 0
+}
 
-	method anguloCorroborado(anguloBase) {
-		if (anguloBase.equals(-45)) return 315 else if (anguloBase.equals(360)) return 0 else return anguloBase
+object horario inherits Angulo {
+
+	method anguloCorroborado(jugador, posicionLista) {
+		contador = posicionLista + 1
+		if (contador==8) contador=0
+		return direcciones.get(contador)
+		}
+	method actualizarContador(posicionLista){
+		return contador
 	}
 
 }
 
-object horario {
-
-	method anguloCorroborado(jugador, anguloBase) {
-		var angulo = anguloBase - 45
-		if (angulo.equals(-45)) return 315 else return angulo
+object antihorario inherits Angulo{
+	method anguloCorroborado(jugador , posicionLista) {
+		contador = posicionLista-1
+		if (contador==-1) contador=7
+		
+		return direcciones.get(contador)
+	} 
+	method actualizarContador(posicionLista){
+		return contador
 	}
-
 }
-
-object antihorario {
-
-	method anguloCorroborado(jugador, anguloBase) {
-		var angulo = anguloBase + 45
-		if (angulo.equals(360)) return 0 else return angulo
-	}
-
-}
-
-//HACER 2 WKO, 1 POR DER Y OTRO POR IZQ

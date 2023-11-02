@@ -27,6 +27,9 @@ class Municion {
 	}
 
 	method movete() {
+		position = anguloMunicion.coordenada(position)
+		self.controlarPosicionTablero()
+		/*
 		self.movimiento(anguloMunicion)
 		if (anguloMunicion.equals(0)) {
 			position = position.right(1)
@@ -45,7 +48,7 @@ class Municion {
 		} else if (anguloMunicion.equals(315)) {
 			position = position.up(-1).right(1)
 		}
-		self.controlarPosicionTablero()
+		self.controlarPosicionTablero() */
 	}
 
 	/*method mover(direccion){

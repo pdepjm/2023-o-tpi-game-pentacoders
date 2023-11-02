@@ -10,7 +10,8 @@ class Nave {
 	var property position = game.center()
 	var imagen
 	var hp = 500
-	var angulo = 0
+	var angulo = derecha
+	var contadorAngulo = 0
 	var estaMuerto = false
 	var numeroNave
 	var balas = 0
@@ -53,7 +54,8 @@ class Nave {
 	}
 
 	method rotarA(direccionDeRotacion) {
-		angulo = direccionDeRotacion.anguloCorroborado(self, angulo)
+		angulo = direccionDeRotacion.anguloCorroborado(self, contadorAngulo)
+		contadorAngulo = direccionDeRotacion.actualizarContador(contadorAngulo)
 		self.cambiarImagen(angulo.toString())
 	}
 
