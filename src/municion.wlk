@@ -6,7 +6,7 @@ import municion.*
 class Municion {
 
 	var property position = game.origin() // devuelve (0,0)
-	var anguloMunicion 
+	var anguloMunicion
 	var evento
 
 	method image() = "pelota.png"
@@ -18,18 +18,15 @@ class Municion {
 	method evento(nuevoEvento) {
 		evento = nuevoEvento
 	}
-	method movimiento(angul){
-		
+
+	method movimiento(angul) {
 	}
 
-
-method mover(){
-position = anguloMunicion.movimiento(position)
-}
-
+	method mover() {
+		position = anguloMunicion.movimiento(position)
+	}
 
 	method movete() {
-		
 		self.movimiento(anguloMunicion)
 		if (anguloMunicion.equals(0)) {
 			position = position.right(1)
@@ -80,14 +77,17 @@ position = anguloMunicion.movimiento(position)
 		self.quitar()
 	}
 
+	method evento() = evento
+
 }
-class Triangulos inherits Municion{
-	
+
+class Triangulos inherits Municion {
+
 	override method image() = "triangulo.png"
+
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(60)
 	}
+
 }
-
-
 
