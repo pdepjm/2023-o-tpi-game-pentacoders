@@ -168,6 +168,8 @@ object juego {
 		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_180.png")
 		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
 		var triangulo = new Triangulo()
+		var vida = new Vida()
+		
 		jugador2.position(game.center().right(2))
 		jugador2.rotarA(antihorario)
 		jugador2.rotarA(antihorario)
@@ -216,15 +218,25 @@ object juego {
 				elemento.cambiarDisparo(jugador2)
 				elemento.quitar()
 			}
+			else if(elemento == vida){
+				elemento.curar(jugador1)
+				elemento.quitar()
+			}
 			elemento.chocasteCon(jugador2)
 			elemento.quitar()
 		})
 		game.schedule(3000,{game.addVisual(triangulo)})
+		game.schedule(2000,{game.addVisual(vida)})
 		game.whenCollideDo(jugador1, { elemento =>
 			if(elemento == triangulo){
 				elemento.cambiarDisparo(jugador1)
 				elemento.quitar()
 			}
+			else if(elemento == vida){
+				elemento.curar(jugador1)
+				elemento.quitar()
+			}
+				
 			elemento.chocasteCon(jugador1)
 			elemento.quitar()
 		})

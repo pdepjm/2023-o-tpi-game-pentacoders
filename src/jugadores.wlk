@@ -18,6 +18,10 @@ class Nave {
 	method angulo() = angulo
 
 	method hp() = hp
+	
+	method recuperarVida(cantidad){
+		hp = (self.hp()+cantidad).min(500)
+	}
 
 	method image() = imagen
 
