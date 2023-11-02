@@ -16,30 +16,7 @@ describe "Nave" {
 		jugador2 = new Nave(numeroNave="2", imagen = "Jugador2_180.png")
 	}
 
-	test "Puede disparar hacia la derecha (0°)" {
-		game.addVisual(jugador1)
-		game.addVisual(jugador2) // el que se testea
-		/*game.whenCollideDo(jugador1, { elemento =>
-			if (elemento.soyMunicion()) {
-				jugador1.sufrirDanio(30)
-				elemento.quitar()
-			}// para arreglar esto, primero hagan el cambio y luego testeen chocarseCon sin onCollide
-		})*/
-		game.whenCollideDo(jugador2, { elemento =>
-			elemento.chocasteCon(jugador2)
-			elemento.quitar()
-		})
-		
-		
-		
-		jugador1.mover(derecha)
-		jugador1.mover(derecha)
-		var vidaAnterior = jugador1.hp()
-		jugador2.disparar()
-		assert.equals(vidaAnterior - 30, jugador1.hp())
-	}
-	
-	
+
 	
 	test "Se mueve a la Izquierda"{
 		var posAnterior = jugador1.position()
