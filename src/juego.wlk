@@ -208,7 +208,7 @@ object juego {
 		game.showAttributes(jugador2)
 		game.showAttributes(jugador1)
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
-		game.onTick(500, "disparar", { enemigo.disparar()})
+		game.onTick(500, "disparar", { enemigo.dispararDos(0) enemigo.dispararDos(180)})
 		
 		/*game.whenCollideDo(jugador2, { elemento =>
 			if(elemento == triangulo){

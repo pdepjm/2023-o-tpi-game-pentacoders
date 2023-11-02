@@ -1,7 +1,6 @@
 import juego.*
 
 program naves {
-    //juego.iniciar()
 
     juego.setear()
     juego.menu()
