@@ -147,3 +147,7 @@ class Jugador inherits Nave {
 
 }
 
+class Enemigo1Jugador inherits Enemigo{
+	
+}
+
