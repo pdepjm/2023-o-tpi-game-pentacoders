@@ -15,7 +15,7 @@ class Nave {
 	var estaMuerto = false
 	var numeroNave
 	var balas = 0
-
+	method hp(vida){hp=vida}
 	method angulo() = angulo
 
 	method hp() = hp
@@ -104,9 +104,10 @@ class Nave {
 }
 
 class Enemigo inherits Nave {
-
+	
 	// naves
 	var vida = 100
+	
 
 	// var property position = game.center()	//devuelve (0,0)
 	// var movimiento = [0,45,90,135,180,225,270,315]
@@ -130,6 +131,10 @@ class Enemigo inherits Nave {
 		} else if (hp <= 0) {
 			self.quitar()
 		}
+	}
+	method descansar(){
+		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar"]
+		game.say(self, descansos.anyOne())
 	}
 
 }

@@ -4,21 +4,25 @@ import municion.*
 
 class PowerUp{
 	var property position = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
-
-	method image() = "powerUp.png"
+	var usado = false
+	method image() = "manolo.png"
 
 	method accion(jugador){}
 
 	method quitar() {
-		game.removeVisual(self)
+		if(!usado){
+			game.removeVisual(self)
+		}
 	}
 	method chocasteCon(jugador){
 		self.accion(jugador)
 		self.quitar()
+		usado = true
 	}
 }
 
 class Triangulo inherits PowerUp{
+	override method image() = "powerUp.png"
 	override method accion(jugador) {
 		jugador.cambiarBalas("Triangulo")
 	}
@@ -27,6 +31,7 @@ class Triangulo inherits PowerUp{
 
 
 class Vida inherits PowerUp{
+	override method image() = "vida.png" 
 	override method accion(jugador) {
 		jugador.recuperarVida(250)
 	}

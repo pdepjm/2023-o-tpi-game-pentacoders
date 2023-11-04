@@ -133,18 +133,26 @@ object juego {
 		game.showAttributes(jugador2)
 		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
 		
+		
 		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
 		game.addVisual(enemigo)
+		//enemigo.hp(100)
+		game.onTick(800, "bardear", { enemigo.descansar()})
+		
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
-		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda)
-			enemigo.dispararDos(derecha)
-		})
+		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda) enemigo.dispararDos(derecha)})
 		
-		var triangulo = new Triangulo()
-		game.schedule(8000, { game.addVisual(triangulo)})
+		
+		game.onTick(4000, "powerUps",{self.powerUpRamdon()})
+		
+		
+	}
+	method powerUpRamdon(){
+		var triangulo = new Triangulo() 
 		var vida = new Vida()
-		game.schedule(20000, { game.addVisual(vida)})
-		
+		var powerUp = [triangulo,vida].anyOne()
+		game.addVisual(powerUp)
+		game.schedule(3000,{powerUp.quitar()})
 	}
 
 }
