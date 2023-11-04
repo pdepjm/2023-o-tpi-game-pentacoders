@@ -133,7 +133,7 @@ object juego {
 		game.showAttributes(jugador2)
 		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
 		
-		
+	
 		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
 		game.addVisual(enemigo)
 		//enemigo.hp(100)
@@ -150,7 +150,9 @@ object juego {
 	method powerUpRamdon(){
 		var triangulo = new Triangulo() 
 		var vida = new Vida()
-		var powerUp = [triangulo,vida].anyOne()
+		var bomba = new Bombas()
+		var powerUp = [triangulo,vida,bomba].anyOne()
+		//var powerUp = bomba
 		game.addVisual(powerUp)
 		game.schedule(3000,{powerUp.quitar()})
 	}

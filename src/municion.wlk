@@ -1,13 +1,15 @@
 import wollok.game.*
 import jugadores.*
 import municion.*
+import angulo.*
+import direcciones.*
 
 // definicion clase pelota
 class Municion {
 
 	var property position = game.origin() // devuelve (0,0)
 	var anguloMunicion
-	var evento
+	var evento = ""
 
 	method image() = "pelota.png"
 
@@ -15,15 +17,16 @@ class Municion {
 		anguloMunicion = nuevoAngulo
 	}
 
+	
 	method evento(nuevoEvento) {
 		evento = nuevoEvento
 	}
 
-	method movimiento(angul) {
-	}
-
-	method mover() {
-		position = anguloMunicion.movimiento(position)
+	method iniciarMoviento() {
+		self.movete()
+		game.addVisual(self)
+		evento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
+		game.onTick(40, evento, { self.movete()})
 	}
 
 	method movete() {
@@ -43,15 +46,21 @@ class Municion {
 		game.removeVisual(self)
 	}
 
-	method soyMunicion() = true
-
 	method chocasteCon(jugador) {
-		jugador.sufrirDanio(30)
-		self.quitar()
 	}
 
 	method evento() = evento
+	method activar(){}
 
+}
+class Pelota inherits Municion{
+	
+	override method image() = "pelota.png"
+	
+	override method chocasteCon(jugador) {
+		jugador.sufrirDanio(30)
+		self.quitar()
+	}
 }
 
 class Triangulos inherits Municion {
@@ -60,7 +69,34 @@ class Triangulos inherits Municion {
 
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(60)
+		self.quitar()
 	}
 
+}
+
+class Bomba inherits Municion {
+	var jugador = ""
+	override method image() = "bombaMunicion.png"
+	
+	override method activar(){
+		jugador.cambiarMunicion(0)
+		//se puede hacer un remove list
+		jugador.dispararTres(arriba,self.position())
+		jugador.dispararTres(abajo,self.position())
+		jugador.dispararTres(izquierda,self.position())
+		jugador.dispararTres(derecha,self.position())
+		jugador.dispararTres(arribaDerecha,self.position())
+		jugador.dispararTres(arribaIzquierda,self.position())
+		jugador.dispararTres(abajoIzquierda,self.position())
+		jugador.dispararTres(abajoDerecha,self.position())
+		
+		self.quitar()
+	}
+	override method quitar(){
+		jugador.cambiarMunicion(0)
+		game.removeTickEvent(evento)
+		game.removeVisual(self)
+	}
+	
 }
 

@@ -14,10 +14,16 @@ class Nave {
 	var contadorAngulo = 0
 	var estaMuerto = false
 	var numeroNave
-	var balas = 0
+	var municiones = 0
+	var modoInterruptor = false
+	var municionInterruptor = self.municionActual(angulo, self.position())
+	var activarMunicion = false
+	
+	method modoInterruptor(modo) {modoInterruptor=modo}
 	method hp(vida){hp=vida}
 	method angulo() = angulo
-
+	
+	
 	method hp() = hp
 
 	method recuperarVida(cantidad) {
@@ -34,45 +40,81 @@ class Nave {
 		hp -= 20
 	}
 
-	method cambiarBalas(bala) {
-		balas = bala
-	}
-
 	method mover(direccion) {
 		if (!direccion.estaAlFinal(position)) {
 			position = direccion.coordenada(position)
 		} else {
 		}
 	}
+	
+//----------------------------
+	method cambiarMunicion(municion) {
+		municiones = municion
+	}
+	
+	method municionActual(anguloRecibido, posicion) {
 
-	method conseguirBala(anguloRecibido, eventoRecibido) {
-		if (balas == 0) {
-			return new Municion(anguloMunicion = anguloRecibido, evento = eventoRecibido, position = self.position())
-		} else {
-			return new Triangulos(anguloMunicion = anguloRecibido, evento = eventoRecibido, position = self.position())
+		if (municiones == 0) {
+			return new Pelota(anguloMunicion = anguloRecibido, position = posicion)
+		} 
+		else if(municiones == 1) {
+			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion)
+		} 
+		else{
+			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self)
 		}
+		
 	}
-
-	method rotarA(direccionDeRotacion) {
-		angulo = direccionDeRotacion.anguloCorroborado(self, contadorAngulo)
-		contadorAngulo = direccionDeRotacion.actualizarContador(contadorAngulo)
-		self.cambiarImagen(angulo.toString())
-	}
-
-	method crearMunicion(anguloRecibido, nombreEvento) {
-		var municion = self.conseguirBala(anguloRecibido, nombreEvento)
-		municion.movete()
-		game.addVisual(municion)
-		game.onTick(40, nombreEvento, { municion.movete()})
+	method crearMunicion(anguloRecibido, posicion) {
+		var municion = self.municionActual(anguloRecibido, posicion)
+		municion.iniciarMoviento()
 		if (hp <= 0) {
 			game.removeVisual(municion)
 			game.removeTickEvent(municion.evento())
 		}
 	}
-
+	
+	method crearMunicionInterruptor(anguloRecibido, posicion){
+		municionInterruptor = self.municionActual(anguloRecibido, posicion)
+		municionInterruptor.iniciarMoviento()
+	}
+	/*
+	method municionInterruptor(){
+		
+	}*/
+	
 	method disparar() { // es un método del jugador porque la munición es del jugador
-		var nombreEvento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
-		self.crearMunicion(angulo, nombreEvento)
+	
+		if(modoInterruptor){
+			if(activarMunicion){
+				municionInterruptor.activar()
+				activarMunicion = false
+				modoInterruptor = false
+			}
+			else{
+				self.crearMunicionInterruptor(angulo, self.position())
+				activarMunicion = true
+			}
+		}
+		else{
+			self.crearMunicion(angulo, self.position())
+		}
+	}
+	
+	method dispararDos(angulo2) { // es un método del jugador porque la munición es del jugador
+		self.crearMunicion(angulo2,self.position())
+	}
+	
+	method dispararTres(angulo2,posicionDisparo) { // es un método del jugador porque la munición es del jugador
+		self.crearMunicion(angulo2,posicionDisparo)
+	}
+//----------------------------
+
+
+	method rotarA(direccionDeRotacion) {
+		angulo = direccionDeRotacion.anguloCorroborado(self, contadorAngulo)
+		contadorAngulo = direccionDeRotacion.actualizarContador(contadorAngulo)
+		self.cambiarImagen(angulo.toString())
 	}
 
 	method sufrirDanio(danio) {
@@ -81,8 +123,6 @@ class Nave {
 			self.quitar()
 		}
 	}
-
-	method soyMunicion() = false
 
 	method quitar() {
 		game.removeVisual(self)
@@ -94,11 +134,8 @@ class Nave {
 	method textColor() = "000000"
 	
 	method chocasteCon(jugador){
-			
 		jugador.sufrirDanio(2)
 		self.sufrirDanio(1)
-		
-		
 	}
 
 }
@@ -118,10 +155,7 @@ class Enemigo inherits Nave {
 		self.mover(direcciones.anyOne())
 	}
 
-	method dispararDos(angulo2) { // es un método del jugador porque la munición es del jugador
-		var nombreEvento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
-		self.crearMunicion(angulo2, nombreEvento)
-	}
+
 
 	override method sufrirDanio(danio) {
 		hp -= danio
@@ -133,7 +167,7 @@ class Enemigo inherits Nave {
 		}
 	}
 	method descansar(){
-		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar"]
+		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P"]
 		game.say(self, descansos.anyOne())
 	}
 
