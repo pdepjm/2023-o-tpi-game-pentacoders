@@ -32,7 +32,8 @@ class Municion {
 	}
 
 	method controlarPosicionTablero() { // controla la posicion de la municion y si llega a los bordes la elimina
-		if (self.position().y() == -game.height() || self.position().y() == game.height() || self.position().x() == -game.width() || self.position().x() == game.width()) {
+		if (self.position().y() == -2 || self.position().y() == game.height()+1 || self.position().x() == -2 || self.position().x() == game.width()+1) 
+		{
 			self.quitar()
 		} // lo metimos todo en un if solo, pq repetiamos logica con dos ifs
 	}

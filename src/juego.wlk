@@ -104,72 +104,47 @@ object juego {
 	method dosJugadores() {
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
 		jugador1.position(game.center().left(2))
-		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda)
-		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
-		var triangulo = new Triangulo()
-		var vida = new Vida()
-		jugador2.position(game.center().right(2))
-			// movimiento jugador 1
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
 		keyboard.s().onPressDo({ jugador1.mover(abajo)})
 		keyboard.d().onPressDo({ jugador1.mover(derecha)})
 		keyboard.e().onPressDo({ jugador1.rotarA(horario)})
 		keyboard.q().onPressDo({ jugador1.rotarA(antihorario)})
-			/*keyboard.e().onPressDo({ jugador1.rotarADerecha() })
-			 keyboard.q().onPressDo({ jugador1.rotarAIzquierda() }) */
 		keyboard.r().onPressDo({ jugador1.disparar()
 			disparoSonido.play()
 		})
-			// movimiento jugador 2
+		game.addVisual(jugador1)
+		game.showAttributes(jugador1)
+		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
+		
+		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda)
+		jugador2.position(game.center().right(2))
 		keyboard.o().onPressDo({ jugador2.rotarA(horario)})
-		keyboard.p().onPressDo({ jugador2.rotarA(antihorario)})
-			/*keyboard.o().onPressDo({ jugador2.rotarADerecha() })
-			 keyboard.p().onPressDo({ jugador2.rotarAIzquierda() })*/
+		keyboard.i().onPressDo({ jugador2.rotarA(antihorario)})
 		keyboard.up().onPressDo({ jugador2.mover(arriba)})
 		keyboard.left().onPressDo({ jugador2.mover(izquierda)})
-		keyboard.down().onPressDo({ jugador2.mover(abajo)})
 		keyboard.right().onPressDo({ jugador2.mover(derecha)})
-			// const ganador = new ganador()
-		keyboard.i().onPressDo({ jugador2.disparar()
+		keyboard.down().onPressDo({ jugador2.mover(abajo)})
+
+		keyboard.p().onPressDo({ jugador2.disparar()
 			disparoSonido.play()
 		})
-			// game.onTick(500, "ganador", {  ganador.gano() })
 		game.addVisual(jugador2)
-		game.addVisual(jugador1)
-		game.addVisual(enemigo)
 		game.showAttributes(jugador2)
-		game.showAttributes(jugador1)
+		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
+		
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
+		game.addVisual(enemigo)
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
 		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda)
 			enemigo.dispararDos(derecha)
 		})
-		game.whenCollideDo(jugador2, { elemento =>
-			if (elemento == triangulo) {
-				elemento.cambiarDisparo(jugador2)
-				elemento.quitar()
-			} else if (elemento == vida) {
-				elemento.curar(jugador2)
-				elemento.quitar()
-			}
-			elemento.chocasteCon(jugador2)
-		// elemento.quitar()----borraba a los jugadores y enemigo
-		})
+		
+		var triangulo = new Triangulo()
 		game.schedule(8000, { game.addVisual(triangulo)})
+		var vida = new Vida()
 		game.schedule(20000, { game.addVisual(vida)})
-		game.whenCollideDo(jugador1, { elemento =>
-			if (elemento == triangulo) {
-				elemento.cambiarDisparo(jugador1)
-				elemento.quitar()
-			} else if (elemento == vida) {
-				elemento.curar(jugador1)
-				elemento.quitar()
-			}
-			elemento.chocasteCon(jugador1)
-		// elemento.quitar()----borraba a los jugadores y enemigo
-		})
-		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
-		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
+		
 	}
 
 }

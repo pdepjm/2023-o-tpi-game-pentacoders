@@ -7,26 +7,27 @@ class PowerUp{
 
 	method image() = "powerUp.png"
 
-
+	method accion(jugador){}
 
 	method quitar() {
 		game.removeVisual(self)
 	}
-
-
+	method chocasteCon(jugador){
+		self.accion(jugador)
+		self.quitar()
+	}
 }
 
 class Triangulo inherits PowerUp{
-	
-		method cambiarDisparo(jugador){
+	override method accion(jugador) {
 		jugador.cambiarBalas("Triangulo")
 	}
-	
 }
 
-class Vida inherits PowerUp{
 
-	method curar(jugador){
+
+class Vida inherits PowerUp{
+	override method accion(jugador) {
 		jugador.recuperarVida(250)
 	}
 }
