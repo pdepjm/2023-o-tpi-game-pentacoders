@@ -25,6 +25,8 @@ class Triangulo inherits PowerUp{
 	override method image() = "powerUp.png"
 	override method accion(jugador) {
 		jugador.cambiarMunicion(1)
+		jugador.modoInterruptor(false)
+		jugador.activarMunicion(false)
 		game.schedule(5000,{jugador.cambiarMunicion(0)})
 	}
 }
@@ -32,7 +34,7 @@ class Triangulo inherits PowerUp{
 class Bombas inherits PowerUp{
 	override method image() = "bomba.png"
 	override method accion(jugador) {
-		jugador.cambiarMunicion(3)
+		jugador.cambiarMunicion(2)
 		jugador.modoInterruptor(true)
 		
 	}
@@ -44,10 +46,11 @@ class Vida inherits PowerUp{
 		jugador.recuperarVida(250)
 	}
 }
-/*
+
 class Teletransportacion inherits PowerUp{
-	override method image() = "manolo.png"
-	 override method accion(jugador) {
-		
-	}
-}*/
+	override method image() = "portal.png"
+	override method accion(jugador) {
+		jugador.cambiarMunicion(3)
+		jugador.modoInterruptor(true)
+	} 
+}

@@ -19,7 +19,15 @@ class Nave {
 	var municionInterruptor = self.municionActual(angulo, self.position())
 	var activarMunicion = false
 	
+	method cambiarPosicion(posicion){
+		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
+		{
+			position=posicion
+		}
+	}
 	method modoInterruptor(modo) {modoInterruptor=modo}
+	method activarMunicion(valor){activarMunicion=valor}
+	
 	method hp(vida){hp=vida}
 	method angulo() = angulo
 	
@@ -60,8 +68,11 @@ class Nave {
 		else if(municiones == 1) {
 			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion)
 		} 
-		else{
+		else if(municiones == 2){
 			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self)
+		}
+		else{
+			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self)
 		}
 		
 	}
@@ -167,7 +178,7 @@ class Enemigo inherits Nave {
 		}
 	}
 	method descansar(){
-		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P"]
+		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P","¿Es todo lo que tienen?"]
 		game.say(self, descansos.anyOne())
 	}
 

@@ -136,11 +136,11 @@ object juego {
 	
 		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
 		game.addVisual(enemigo)
-		//enemigo.hp(100)
+		enemigo.hp(300)
 		game.onTick(800, "bardear", { enemigo.descansar()})
 		
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
-		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda) enemigo.dispararDos(derecha)})
+		game.onTick(600, "disparar", { enemigo.dispararDos(izquierda) enemigo.dispararDos(derecha)}) 
 		
 		
 		game.onTick(4000, "powerUps",{self.powerUpRamdon()})
@@ -151,8 +151,9 @@ object juego {
 		var triangulo = new Triangulo() 
 		var vida = new Vida()
 		var bomba = new Bombas()
-		var powerUp = [triangulo,vida,bomba].anyOne()
-		//var powerUp = bomba
+		var portal = new Teletransportacion()
+		var powerUp = [triangulo,vida,bomba,portal].anyOne()
+		//var powerUp = portal
 		game.addVisual(powerUp)
 		game.schedule(3000,{powerUp.quitar()})
 	}

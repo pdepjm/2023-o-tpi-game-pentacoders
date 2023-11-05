@@ -10,7 +10,6 @@ class Municion {
 	var property position = game.origin() // devuelve (0,0)
 	var anguloMunicion
 	var evento = ""
-
 	method image() = "pelota.png"
 
 	method angulo(nuevoAngulo) {
@@ -94,9 +93,28 @@ class Bomba inherits Municion {
 	}
 	override method quitar(){
 		jugador.cambiarMunicion(0)
+		jugador.modoInterruptor(false)
+		jugador.activarMunicion(false)
 		game.removeTickEvent(evento)
 		game.removeVisual(self)
 	}
 	
 }
-
+class Aim inherits Municion {
+	var jugador = ""
+	override method image() = "aim.png"
+	
+	override method activar(){
+		jugador.cambiarMunicion(0)
+		jugador.cambiarPosicion(self.position())
+		self.quitar()
+	}
+	override method quitar(){
+		jugador.cambiarMunicion(0)
+		jugador.modoInterruptor(false)
+		jugador.activarMunicion(false)
+		game.removeTickEvent(evento)
+		game.removeVisual(self)
+	}
+	
+}
