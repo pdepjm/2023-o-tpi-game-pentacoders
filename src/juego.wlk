@@ -41,10 +41,10 @@ object juego {
 	}
 
 	method setear() {
-		game.width(25)
-		game.height(10)
+		game.width(23)
+		game.height(12)
 		game.cellSize(50)
-		game.boardGround("fondo.jpg")
+		game.boardGround("fondo.png")
 		game.title("PentaWarrior")
 		self.menu()
 		game.start()
