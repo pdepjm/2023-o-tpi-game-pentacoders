@@ -142,7 +142,7 @@ class Nave {
 	// VIDA
 	method text() = "                 " + hp.toString()
 
-	method textColor() = "000000"
+	method textColor() = "#7CFF01"
 	
 	method chocasteCon(jugador){
 		jugador.sufrirDanio(2)
