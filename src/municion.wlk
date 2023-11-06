@@ -10,6 +10,7 @@ class Municion {
 	var property position = game.origin() // devuelve (0,0)
 	var anguloMunicion
 	var evento = ""
+	var colorMunicion
 	method image() = "pelota.png"
 
 	method angulo(nuevoAngulo) {
@@ -54,7 +55,7 @@ class Municion {
 }
 class Pelota inherits Municion{
 	
-	override method image() = "pelota.png"
+	override method image() = "pelota"+ colorMunicion.nombre() +".png"
 	
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(30)
@@ -64,7 +65,7 @@ class Pelota inherits Municion{
 
 class Triangulos inherits Municion {
 
-	override method image() = "triangulo.png"
+	override method image() = "triangulo"+ colorMunicion.nombre() +".png"
 
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(60)
@@ -75,7 +76,7 @@ class Triangulos inherits Municion {
 
 class Bomba inherits Municion {
 	var jugador = ""
-	override method image() = "bombaMunicion.png"
+	override method image() = "bombaMunicion"+ colorMunicion.nombre() +".png"
 	
 	override method activar(){
 		jugador.cambiarMunicion(0)
@@ -102,7 +103,7 @@ class Bomba inherits Municion {
 }
 class Aim inherits Municion {
 	var jugador = ""
-	override method image() = "aim.png"
+	override method image() = "aim"+ colorMunicion.nombre() +".png"
 	
 	override method activar(){
 		jugador.cambiarMunicion(0)

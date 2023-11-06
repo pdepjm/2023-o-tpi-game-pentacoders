@@ -36,6 +36,7 @@ class Bombas inherits PowerUp{
 	override method accion(jugador) {
 		jugador.cambiarMunicion(2)
 		jugador.modoInterruptor(true)
+		jugador.activarMunicion(false)
 		
 	}
 }
@@ -52,5 +53,6 @@ class Teletransportacion inherits PowerUp{
 	override method accion(jugador) {
 		jugador.cambiarMunicion(3)
 		jugador.modoInterruptor(true)
+		jugador.activarMunicion(false)
 	} 
 }

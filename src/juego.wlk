@@ -6,7 +6,7 @@ import Ganador.*
 import direcciones.*
 import sonidos.*
 import powerUps.*
-
+import colores.*
 // implementar primera entrega como minimo:
 // dos jugadores(listo)
 // rotar en principio en 45 grados * 
@@ -60,6 +60,7 @@ object juego {
 	}
 
 	method unJugador() {
+		/*
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
 		jugador1.position(game.center().left(2))
 		var enemigo = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
@@ -98,11 +99,11 @@ object juego {
 		game.whenCollideDo(jugador1, { elemento =>
 			elemento.chocasteCon(jugador1)
 			elemento.quitar()
-		})
+		})*/
 	}
 
 	method dosJugadores() {
-		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
+		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde)
 		jugador1.position(game.center().left(2))
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
@@ -117,7 +118,7 @@ object juego {
 		game.showAttributes(jugador1)
 		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
 		
-		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda)
+		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda,color = amarillo)
 		jugador2.position(game.center().right(2))
 		keyboard.o().onPressDo({ jugador2.rotarA(horario)})
 		keyboard.i().onPressDo({ jugador2.rotarA(antihorario)})
@@ -134,7 +135,7 @@ object juego {
 		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
 		
 	
-		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigo.png")
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco)
 		game.addVisual(enemigo)
 		enemigo.hp(300)
 		game.onTick(800, "bardear", { enemigo.descansar()})

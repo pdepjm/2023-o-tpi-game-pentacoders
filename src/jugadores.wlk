@@ -4,6 +4,7 @@ import angulo.*
 import Ganador.*
 import juego.*
 import direcciones.*
+import colores.*
 
 class Nave {
 
@@ -18,6 +19,7 @@ class Nave {
 	var modoInterruptor = false
 	var municionInterruptor = self.municionActual(angulo, self.position())
 	var activarMunicion = false
+	var color 
 	
 	method cambiarPosicion(posicion){
 		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
@@ -63,16 +65,16 @@ class Nave {
 	method municionActual(anguloRecibido, posicion) {
 
 		if (municiones == 0) {
-			return new Pelota(anguloMunicion = anguloRecibido, position = posicion)
+			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color)
 		} 
 		else if(municiones == 1) {
-			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion)
+			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color)
 		} 
 		else if(municiones == 2){
-			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self)
+			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color)
 		}
 		else{
-			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self)
+			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color)
 		}
 		
 	}
@@ -142,7 +144,7 @@ class Nave {
 	// VIDA
 	method text() = "                 " + hp.toString()
 
-	method textColor() = "#7CFF01"
+	method textColor() = color.texto()
 	
 	method chocasteCon(jugador){
 		jugador.sufrirDanio(2)
@@ -159,7 +161,7 @@ class Enemigo inherits Nave {
 
 	// var property position = game.center()	//devuelve (0,0)
 	// var movimiento = [0,45,90,135,180,225,270,315]
-	method image() = "enemigo.png"
+	method image() = imagen
 
 	method moverRamdon() {
 		const direcciones = [ arriba, abajo, izquierda, derecha ]
@@ -180,8 +182,12 @@ class Enemigo inherits Nave {
 	method descansar(){
 		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P","¿Es todo lo que tienen?"]
 		game.say(self, descansos.anyOne())
+		self.cambiarColor()
 	}
-
+	method cambiarColor(){
+		color= [blanco,amarillo,verde,violeta,celeste].anyOne()
+		imagen = "enemigo"+ color.nombre() +".png"
+	}
 }
 
 class Jugador inherits Nave {
