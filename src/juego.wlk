@@ -60,6 +60,10 @@ object juego {
 	}
 
 	method unJugador() {
+		
+		cometas.iniciar()
+		//var cometa = Cometa (anguloMunicion = arriba, position = game.center(),colorMunicion=amarillo)
+		//	Cometa.iniciarMoviento()
 		/*
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
 		jugador1.position(game.center().left(2))
@@ -145,7 +149,7 @@ object juego {
 		
 		
 		game.onTick(4000, "powerUps",{self.powerUpRamdon()})
-		
+		cometas.iniciar()
 		
 	}
 	method powerUpRamdon(){
@@ -163,7 +167,7 @@ object juego {
 
 object menu {
 
-	var property position = game.at(4, 3)
+	var property position = game.origin()
 	var imagen = "Menu 1.png"
 	var modo = true
 	var modoJugador = true
@@ -192,4 +196,19 @@ object menu {
 	}
 
 }
+
+object cometas{
+	
+	method iniciar(){
+		game.onTick(2000, "cometa",{self.crear()})
+	}
+	method crear(){
+		var posicion = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
+		var colores = [amarillo,verde,violeta,celeste]
+		var patrones = [[arriba,izquierda,arribaIzquierda],[abajo,izquierda,abajoIzquierda],[arriba,derecha,arribaDerecha],[abajo,derecha,abajoDerecha]]
+		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne())
+		cometa.iniciarMoviento()
+	}
+}
+
 

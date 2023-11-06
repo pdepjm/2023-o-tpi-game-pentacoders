@@ -11,8 +11,10 @@ class Municion {
 	var anguloMunicion
 	var evento = ""
 	var colorMunicion
+	var velocidad=40
+	
 	method image() = "pelota.png"
-
+	
 	method angulo(nuevoAngulo) {
 		anguloMunicion = nuevoAngulo
 	}
@@ -26,7 +28,7 @@ class Municion {
 		self.movete()
 		game.addVisual(self)
 		evento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
-		game.onTick(40, evento, { self.movete()})
+		game.onTick(velocidad, evento, { self.movete()})
 	}
 
 	method movete() {
@@ -116,6 +118,20 @@ class Aim inherits Municion {
 		jugador.activarMunicion(false)
 		game.removeTickEvent(evento)
 		game.removeVisual(self)
+	}
+	
+}
+class Cometa inherits Municion {
+	var patron
+	override method image() = "cometa"+ colorMunicion.nombre() +".png"
+	override method movete() {
+		anguloMunicion = patron.anyOne()
+		position = anguloMunicion.coordenada(position)
+		self.controlarPosicionTablero()
+	}
+	override method chocasteCon(jugador) {
+		jugador.sufrirDanio(50)
+		self.quitar()
 	}
 	
 }
