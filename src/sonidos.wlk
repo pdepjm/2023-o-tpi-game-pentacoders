@@ -16,7 +16,7 @@ object explosion {
 	
 	method play (){
 		const sonido = game.sound("explosion.mp3")
-		//sonido.volume(0.3)
+		sonido.volume(0.8)
 		sonido.play()
 	}
 }
@@ -40,7 +40,7 @@ object sierra {
 	
 	method play (){
 		const sonido = game.sound("sierra.mp3")
-		sonido.volume(0.6)
+		sonido.volume(0.5)
 		sonido.play()
 	}
 }
