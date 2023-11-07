@@ -77,8 +77,8 @@ class Sierra inherits Municion {
 	override method image() = "sierra"+ colorMunicion.nombre() +".png"
 	override method reproducirSonido () {sierra.play()}
 	override method chocasteCon(jugador) {
-		jugador.sufrirDanio(60)
 		self.quitar()
+		jugador.sufrirDanio(60)
 	}
 
 }
