@@ -17,8 +17,9 @@ object ganador {
 		game.clear()
 		ganador.position(game.center().down(1))
 		
-		game.addVisual(ganador)
+		
 		game.addVisual(self)
+		game.addVisual(ganador)
 		
 		cometas.iniciar()
 		game.say(ganador, "Gane")
