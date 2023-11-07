@@ -70,7 +70,7 @@ class Nave {
 			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,sonidoEncendido = sonido,caracteresParaEvento=caracteres)
 		} 
 		else if(municiones == 1) {
-			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,caracteresParaEvento=caracteres)
+			return new Sierra(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,caracteresParaEvento=caracteres)
 		} 
 		else if(municiones == 2){
 			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color,caracteresParaEvento=caracteres)
@@ -197,8 +197,9 @@ class Jugador inherits Nave {
 	override method sufrirDanio(danio) {
 		hp -= danio
 		if (hp <= 0) {
-			self.quitar()
-			ganador.gano(numeroNave)
+			self.finalizar()
+			//self.quitar()
+			ganador.perdio(self)
 		// juego.eliminarJugador(self)
 		}
 	}
@@ -207,6 +208,8 @@ class Jugador inherits Nave {
 		game.showAttributes(self)
 		game.whenCollideDo(self, { elemento => elemento.chocasteCon(self)})
 	}
-
+	method finalizar(){
+		game.whenCollideDo(self, {})
+	}
 }
 

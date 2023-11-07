@@ -109,7 +109,7 @@ object juego {
 
 	method dosJugadores() {
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
-		jugador1.position(game.center().left(5))
+		jugador1.position(game.center().left(7))
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
 		keyboard.s().onPressDo({ jugador1.mover(abajo)})
@@ -120,7 +120,7 @@ object juego {
 		jugador1.iniciar()
 				
 		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda,color = amarillo,caracteres = [13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23, 23])
-		jugador2.position(game.center().right(5))
+		jugador2.position(game.center().right(7))
 		keyboard.o().onPressDo({ jugador2.rotarA(horario)})
 		keyboard.i().onPressDo({ jugador2.rotarA(antihorario)})
 		keyboard.up().onPressDo({ jugador2.mover(arriba)})
@@ -136,6 +136,8 @@ object juego {
 		
 		powerUps.iniciar()
 		cometas.iniciar()
+		ganador.participantes([jugador1,jugador2])
+		game.schedule(20000,{game.clear() self.dosJugadores()}) //terminar
 	}
 
 }
@@ -176,27 +178,15 @@ object powerUps {
 	method iniciar(){game.onTick(4000, "powerUps",{self.powerUpRamdon()}) }
 	
 	method powerUpRamdon(){
-		var triangulo = new Triangulo() 
+		var sierra = new Sierras() 
 		var vida = new Vida()
 		var bomba = new Bombas()
 		var portal = new Teletransportacion()
-		var powerUp = [triangulo,vida,bomba,portal].anyOne()
+		var powerUp = [sierra,vida,bomba,portal].anyOne()
 		game.addVisual(powerUp)
 		game.schedule(3000,{powerUp.quitar()})
 	}
 }
-object cometas{
-	
-	method iniciar(){
-		game.onTick(2000, "cometa",{self.crear()})
-	}
-	method crear(){
-		var posicion = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
-		var colores = [amarillo,verde,violeta,celeste]
-		var patrones = [[arriba,izquierda,arribaIzquierda],[abajo,izquierda,abajoIzquierda],[arriba,derecha,arribaDerecha],[abajo,derecha,abajoDerecha]]
-		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne(),caracteresParaEvento = ["a","b","c","d","e","f","g"])
-		cometa.iniciarMoviento()
-	}
-}
+
 
 

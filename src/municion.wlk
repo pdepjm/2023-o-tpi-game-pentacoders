@@ -4,6 +4,7 @@ import municion.*
 import angulo.*
 import direcciones.*
 import sonidos.*
+import colores.*
 // definicion clase pelota
 class Municion {
 
@@ -18,8 +19,7 @@ class Municion {
 	method reproducirSonido () {disparoSonido.play()}
 	method image() = "pelota.png"
 	
-	//method generarNombreEvento() = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
-	method generarNombreEvento() = caracteresParaEvento.anyOne().toString() + caracteresParaEvento.anyOne().toString() + caracteresParaEvento.toString()
+	method generarNombreEvento() = (caracteresParaEvento.anyOne().toString() )+ (caracteresParaEvento.anyOne().toString()) + (caracteresParaEvento.anyOne().toString())
 	
 	method angulo(nuevoAngulo) {
 		anguloMunicion = nuevoAngulo
@@ -67,14 +67,14 @@ class Pelota inherits Municion{
 	override method image() = "pelota"+ colorMunicion.nombre() +".png"
 	
 	override method chocasteCon(jugador) {
-		jugador.sufrirDanio(30)
 		self.quitar()
+		jugador.sufrirDanio(30)
 	}
 }
 
-class Triangulos inherits Municion {
+class Sierra inherits Municion {
 
-	override method image() = "triangulo"+ colorMunicion.nombre() +".png"
+	override method image() = "sierra"+ colorMunicion.nombre() +".png"
 	override method reproducirSonido () {sierra.play()}
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(60)
@@ -144,4 +144,17 @@ class Cometa inherits Municion {
 		self.quitar()
 	}
 	
+}
+object cometas{
+	
+	method iniciar(){
+		game.onTick(2000, "cometa",{self.crear()})
+	}
+	method crear(){
+		var posicion = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
+		var colores = [amarillo,verde,violeta,celeste]
+		var patrones = [[arriba,izquierda,arribaIzquierda],[abajo,izquierda,abajoIzquierda],[arriba,derecha,arribaDerecha],[abajo,derecha,abajoDerecha]]
+		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne(),caracteresParaEvento = ["a","b","c","d","e","f","g"])
+		cometa.iniciarMoviento()
+	}
 }

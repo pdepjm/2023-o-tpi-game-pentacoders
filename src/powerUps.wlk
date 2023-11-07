@@ -6,7 +6,7 @@ import sonidos.*
 class PowerUp{
 	var property position = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
 	var usado = false
-	method image() = "manolo.png"
+	method image() = ""
 
 	method accion(jugador){}
 
@@ -23,8 +23,8 @@ class PowerUp{
 	}
 }
 
-class Triangulo inherits PowerUp{
-	override method image() = "powerUp.png"
+class Sierras inherits PowerUp{
+	override method image() = "sierra.png"
 	override method accion(jugador) {
 		jugador.cambiarMunicion(1)
 		jugador.modoInterruptor(false)

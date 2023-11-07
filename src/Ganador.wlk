@@ -1,25 +1,34 @@
 import wollok.game.*
-
+import municion.*
+import angulo.*
 object ganador {
+	var property position = game.origin()
+	var imagen = "ganador.png"
+	var participantes = []
 	
-	var imagen = "0.png"
-	
-	var property position = game.at(0,0)
-	
+	method participantes (listaDeParticipantes){participantes = listaDeParticipantes}
 	method image() = imagen
+
 	
-	method gano(nombreGanador){
+	method perdio(perdedor){
+		participantes.remove(perdedor)
+		const ganador = participantes.anyOne()
+		ganador.finalizar()
 		game.clear()
+		ganador.position(game.center().down(1))
 		
-		if(nombreGanador == "1"){
-			imagen = "jugador1Ganador.png"	
-		}
-		else {
-			imagen = "jugador2Ganador.png"
-		}
-		
+		game.addVisual(ganador)
 		game.addVisual(self)
 		
+		cometas.iniciar()
+		game.say(ganador, "Gane")
+		game.onTick(4000,"festejo",{ganador.rotarA(horario) self.efecto(ganador)})
+		
 	}
-	
+	method efecto(jugador){
+		jugador.cambiarMunicion(2)
+		jugador.modoInterruptor(true)
+		jugador.activarMunicion(false)
+		jugador.disparar()
+	}
 }

@@ -34,7 +34,6 @@ object powerUp {
 		const sonido = game.sound("powerUp.mp3")
 		sonido.volume(0.6)
 		sonido.play()
-		//game.sound("powerUp.mp3").play()
 	}
 }
 object sierra {
