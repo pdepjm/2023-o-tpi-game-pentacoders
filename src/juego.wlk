@@ -61,7 +61,7 @@ object juego {
 	}
 
 	method unJugador() {
-		
+		powerUps.iniciar()
 
 		//var cometa = Cometa (anguloMunicion = arriba, position = game.center(),colorMunicion=amarillo)
 		//	Cometa.iniciarMoviento()
