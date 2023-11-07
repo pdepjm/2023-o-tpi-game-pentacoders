@@ -35,7 +35,7 @@ object juego {
 		game.height(12)
 		game.cellSize(50)
 		game.boardGround("fondo.png")
-		game.title("PentaWarrior")
+		game.title("PentaWarriors")
 		self.menu()
 		
 	}
