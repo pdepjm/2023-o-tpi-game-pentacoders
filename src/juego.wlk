@@ -7,19 +7,8 @@ import direcciones.*
 import sonidos.*
 import powerUps.*
 import colores.*
-// implementar primera entrega como minimo:
-// dos jugadores(listo)
-// rotar en principio en 45 grados * 
-// disparar, cambiar imagen * 
-// mover jugador *
-// al disparar y apuntar usar teclas distintas  *
-// delegar en objetos cuando se apunta y dispara *
-// conjunto chico de tests que se fije si anda disparar en una direccion *
-// avisar tutores *
-// mostrar la vida
-// OPCIONAL:
-// agregar enemigos
-// pensar en agregar power ups para la segunda entrega
+
+
 object juego {
 
 	var cantidadJugadores
@@ -38,7 +27,6 @@ object juego {
 		fondo.shouldLoop(true)
 		fondo.volume(0.5)
 		fondo.play()
-		//musicaMenu.iniciar()
 		
 	}
 
@@ -58,27 +46,23 @@ object juego {
 		keyboard.up().onPressDo({ menu.cambiarModo() sonidoMenu.play()} )
 		keyboard.down().onPressDo({ menu.cambiarModo() sonidoMenu.play()})
 		keyboard.enter().onPressDo({ sonidoMenu.play() game.removeVisual(menu)
-			game.clear() rain.stop() self.iniciar()
+			game.clear() musica.stop() self.iniciar()
 		})
 		game.addVisual(menu)
 		cometas.iniciar()
 		
-		const rain = game.sound("musicaMenu.mp3")
-		rain.shouldLoop(true)
-		rain.volume(0.5)
-		game.schedule(20, { rain.play()} )
-		//rain.play()
+		const musica = game.sound("musicaMenu.mp3")
+		musica.shouldLoop(true)
+		musica.volume(0.5)
+		game.schedule(20, { musica.play()} )
+
 		game.start()
-		
-		//game.schedule(1,{musicaMenu.iniciar()})
-		
-		
-		
+
 	}
 
 	method unJugador() {
 		
-		cometas.iniciar()
+
 		//var cometa = Cometa (anguloMunicion = arriba, position = game.center(),colorMunicion=amarillo)
 		//	Cometa.iniciarMoviento()
 		/*
@@ -124,73 +108,38 @@ object juego {
 	}
 
 	method dosJugadores() {
-		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde)
-		jugador1.position(game.center().left(2))
+		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
+		jugador1.position(game.center().left(5))
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
 		keyboard.s().onPressDo({ jugador1.mover(abajo)})
 		keyboard.d().onPressDo({ jugador1.mover(derecha)})
 		keyboard.e().onPressDo({ jugador1.rotarA(horario)})
 		keyboard.q().onPressDo({ jugador1.rotarA(antihorario)})
-		keyboard.r().onPressDo({ jugador1.disparar()
-			
-		})
-		game.addVisual(jugador1)
-		game.showAttributes(jugador1)
-		game.whenCollideDo(jugador1, { elemento => elemento.chocasteCon(jugador1)})
-		
-		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda,color = amarillo)
-		jugador2.position(game.center().right(2))
+		keyboard.r().onPressDo({ jugador1.disparar()})
+		jugador1.iniciar()
+				
+		var jugador2 = new Jugador(numeroNave = "2", imagen = "Jugador2_izquierda.png", contadorAngulo = 6, angulo = izquierda,color = amarillo,caracteres = [13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23, 23])
+		jugador2.position(game.center().right(5))
 		keyboard.o().onPressDo({ jugador2.rotarA(horario)})
 		keyboard.i().onPressDo({ jugador2.rotarA(antihorario)})
 		keyboard.up().onPressDo({ jugador2.mover(arriba)})
 		keyboard.left().onPressDo({ jugador2.mover(izquierda)})
 		keyboard.right().onPressDo({ jugador2.mover(derecha)})
 		keyboard.down().onPressDo({ jugador2.mover(abajo)})
-
-		keyboard.p().onPressDo({ jugador2.disparar()
-			
-		})
-		game.addVisual(jugador2)
-		game.showAttributes(jugador2)
-		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
+		keyboard.p().onPressDo({ jugador2.disparar()})
+		jugador2.iniciar()
 		
 	
-		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco,sonido=false)
-		game.addVisual(enemigo)
-		enemigo.hp(300)
-		game.onTick(800, "bardear", { enemigo.descansar()})
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco,sonido=false,caracteres = ["h","i","j","k","l","ll","m","n","o","p","q","r"])
+		enemigo.iniciar()
 		
-		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
-		game.onTick(600, "disparar", { enemigo.dispararDos(izquierda) enemigo.dispararDos(derecha)}) 
-	
-	
-		game.onTick(4000, "powerUps",{self.powerUpRamdon()})
+		powerUps.iniciar()
 		cometas.iniciar()
-		
 	}
-	method powerUpRamdon(){
-		var triangulo = new Triangulo() 
-		var vida = new Vida()
-		var bomba = new Bombas()
-		var portal = new Teletransportacion()
-		var powerUp = [triangulo,vida,bomba,portal].anyOne()
-		//var powerUp = portal
-		game.addVisual(powerUp)
-		game.schedule(3000,{powerUp.quitar()})
-	}
-	
 
 }
 
-object musicaMenu{
-	method iniciar(){
-		const musicaMenu = game.sound("musicaMenu.mp3")
-		musicaMenu.shouldLoop(true)
-		musicaMenu.volume(0.5)
-		musicaMenu.play()
-	}
-}
 object menu {
 
 	var property position = game.origin()
@@ -222,7 +171,20 @@ object menu {
 	}
 
 }
-
+object powerUps {
+	
+	method iniciar(){game.onTick(4000, "powerUps",{self.powerUpRamdon()}) }
+	
+	method powerUpRamdon(){
+		var triangulo = new Triangulo() 
+		var vida = new Vida()
+		var bomba = new Bombas()
+		var portal = new Teletransportacion()
+		var powerUp = [triangulo,vida,bomba,portal].anyOne()
+		game.addVisual(powerUp)
+		game.schedule(3000,{powerUp.quitar()})
+	}
+}
 object cometas{
 	
 	method iniciar(){
@@ -232,7 +194,7 @@ object cometas{
 		var posicion = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
 		var colores = [amarillo,verde,violeta,celeste]
 		var patrones = [[arriba,izquierda,arribaIzquierda],[abajo,izquierda,abajoIzquierda],[arriba,derecha,arribaDerecha],[abajo,derecha,abajoDerecha]]
-		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne())
+		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne(),caracteresParaEvento = ["a","b","c","d","e","f","g"])
 		cometa.iniciarMoviento()
 	}
 }

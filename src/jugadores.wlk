@@ -21,6 +21,8 @@ class Nave {
 	var activarMunicion = false
 	var color 
 	var sonido = true
+	var caracteres 
+	
 	method cambiarPosicion(posicion){
 		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
 		{
@@ -65,16 +67,16 @@ class Nave {
 	method municionActual(anguloRecibido, posicion) {
 
 		if (municiones == 0) {
-			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,sonidoEncendido = sonido)
+			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,sonidoEncendido = sonido,caracteresParaEvento=caracteres)
 		} 
 		else if(municiones == 1) {
-			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color)
+			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,caracteresParaEvento=caracteres)
 		} 
 		else if(municiones == 2){
-			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color)
+			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color,caracteresParaEvento=caracteres)
 		}
 		else{
-			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color)
+			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color,caracteresParaEvento=caracteres)
 		}
 		
 	}
@@ -155,20 +157,20 @@ class Nave {
 
 class Enemigo inherits Nave {
 	
-	// naves
-	var vida = 100
-	
-
-	// var property position = game.center()	//devuelve (0,0)
-	// var movimiento = [0,45,90,135,180,225,270,315]
 	method image() = imagen
-
+	override method text() = "                        " + hp.toString()
 	method moverRamdon() {
 		const direcciones = [ arriba, abajo, izquierda, derecha ]
 		self.mover(direcciones.anyOne())
 	}
 
-
+	method iniciar(){
+		game.addVisual(self)
+		self.hp(300)
+		game.onTick(800, "burlarse", { self.burlarse()})
+		game.onTick(800, "movimiento", { self.moverRamdon()})
+		game.onTick(600, "disparar", { self.dispararDos(izquierda) self.dispararDos(derecha)}) 
+	}
 
 	override method sufrirDanio(danio) {
 		hp -= danio
@@ -179,7 +181,7 @@ class Enemigo inherits Nave {
 			self.quitar()
 		}
 	}
-	method descansar(){
+	method burlarse(){
 		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P","¿Es todo lo que tienen?"]
 		game.say(self, descansos.anyOne())
 		self.cambiarColor()
@@ -199,6 +201,11 @@ class Jugador inherits Nave {
 			ganador.gano(numeroNave)
 		// juego.eliminarJugador(self)
 		}
+	}
+	method iniciar(){
+		game.addVisual(self)
+		game.showAttributes(self)
+		game.whenCollideDo(self, { elemento => elemento.chocasteCon(self)})
 	}
 
 }

@@ -13,8 +13,13 @@ class Municion {
 	var colorMunicion
 	var velocidad=40
 	var sonidoEncendido = true
+	var caracteresParaEvento = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12]
+	
 	method reproducirSonido () {disparoSonido.play()}
 	method image() = "pelota.png"
+	
+	//method generarNombreEvento() = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
+	method generarNombreEvento() = caracteresParaEvento.anyOne().toString() + caracteresParaEvento.anyOne().toString() + caracteresParaEvento.toString()
 	
 	method angulo(nuevoAngulo) {
 		anguloMunicion = nuevoAngulo
@@ -29,7 +34,7 @@ class Municion {
 		self.movete()
 		game.addVisual(self)
 		if (sonidoEncendido) {self.reproducirSonido ()}
-		evento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
+		evento = self.generarNombreEvento()
 		game.onTick(velocidad, evento, { self.movete()})
 	}
 
