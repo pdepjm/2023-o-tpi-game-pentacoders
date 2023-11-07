@@ -20,7 +20,7 @@ class Nave {
 	var municionInterruptor = self.municionActual(angulo, self.position())
 	var activarMunicion = false
 	var color 
-	
+	var sonido = true
 	method cambiarPosicion(posicion){
 		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
 		{
@@ -65,7 +65,7 @@ class Nave {
 	method municionActual(anguloRecibido, posicion) {
 
 		if (municiones == 0) {
-			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color)
+			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,sonidoEncendido = sonido)
 		} 
 		else if(municiones == 1) {
 			return new Triangulos(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color)

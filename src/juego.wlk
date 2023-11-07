@@ -38,6 +38,8 @@ object juego {
 		fondo.shouldLoop(true)
 		fondo.volume(0.5)
 		fondo.play()
+		//musicaMenu.iniciar()
+		
 	}
 
 	method setear() {
@@ -47,16 +49,31 @@ object juego {
 		game.boardGround("fondo.png")
 		game.title("PentaWarrior")
 		self.menu()
-		game.start()
+		
 	}
 
 	method menu() {
-		keyboard.up().onPressDo({ menu.cambiarModo()})
-		keyboard.down().onPressDo({ menu.cambiarModo()})
-		keyboard.enter().onPressDo({ game.removeVisual(menu)
-			self.iniciar()
+		
+		
+		keyboard.up().onPressDo({ menu.cambiarModo() sonidoMenu.play()} )
+		keyboard.down().onPressDo({ menu.cambiarModo() sonidoMenu.play()})
+		keyboard.enter().onPressDo({ sonidoMenu.play() game.removeVisual(menu)
+			game.clear() rain.stop() self.iniciar()
 		})
 		game.addVisual(menu)
+		cometas.iniciar()
+		
+		const rain = game.sound("musicaMenu.mp3")
+		rain.shouldLoop(true)
+		rain.volume(0.5)
+		game.schedule(20, { rain.play()} )
+		//rain.play()
+		game.start()
+		
+		//game.schedule(1,{musicaMenu.iniciar()})
+		
+		
+		
 	}
 
 	method unJugador() {
@@ -116,7 +133,7 @@ object juego {
 		keyboard.e().onPressDo({ jugador1.rotarA(horario)})
 		keyboard.q().onPressDo({ jugador1.rotarA(antihorario)})
 		keyboard.r().onPressDo({ jugador1.disparar()
-			disparoSonido.play()
+			
 		})
 		game.addVisual(jugador1)
 		game.showAttributes(jugador1)
@@ -132,22 +149,22 @@ object juego {
 		keyboard.down().onPressDo({ jugador2.mover(abajo)})
 
 		keyboard.p().onPressDo({ jugador2.disparar()
-			disparoSonido.play()
+			
 		})
 		game.addVisual(jugador2)
 		game.showAttributes(jugador2)
 		game.whenCollideDo(jugador2, { elemento => elemento.chocasteCon(jugador2)})
 		
 	
-		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco)
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco,sonido=false)
 		game.addVisual(enemigo)
 		enemigo.hp(300)
 		game.onTick(800, "bardear", { enemigo.descansar()})
 		
 		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
 		game.onTick(600, "disparar", { enemigo.dispararDos(izquierda) enemigo.dispararDos(derecha)}) 
-		
-		
+	
+	
 		game.onTick(4000, "powerUps",{self.powerUpRamdon()})
 		cometas.iniciar()
 		
@@ -162,9 +179,18 @@ object juego {
 		game.addVisual(powerUp)
 		game.schedule(3000,{powerUp.quitar()})
 	}
+	
 
 }
 
+object musicaMenu{
+	method iniciar(){
+		const musicaMenu = game.sound("musicaMenu.mp3")
+		musicaMenu.shouldLoop(true)
+		musicaMenu.volume(0.5)
+		musicaMenu.play()
+	}
+}
 object menu {
 
 	var property position = game.origin()

@@ -1,6 +1,7 @@
 import wollok.game.*
 import jugadores.*
 import municion.*
+import sonidos.*
 
 class PowerUp{
 	var property position = game.at((0..(game.width()-1)).anyOne() , (0..(game.height()-1)).anyOne())
@@ -18,6 +19,7 @@ class PowerUp{
 		self.accion(jugador)
 		self.quitar()
 		usado = true
+		powerUp.play()
 	}
 }
 

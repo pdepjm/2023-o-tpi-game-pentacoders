@@ -3,7 +3,7 @@ import jugadores.*
 import municion.*
 import angulo.*
 import direcciones.*
-
+import sonidos.*
 // definicion clase pelota
 class Municion {
 
@@ -12,7 +12,8 @@ class Municion {
 	var evento = ""
 	var colorMunicion
 	var velocidad=40
-	
+	var sonidoEncendido = true
+	method reproducirSonido () {disparoSonido.play()}
 	method image() = "pelota.png"
 	
 	method angulo(nuevoAngulo) {
@@ -27,6 +28,7 @@ class Municion {
 	method iniciarMoviento() {
 		self.movete()
 		game.addVisual(self)
+		if (sonidoEncendido) {self.reproducirSonido ()}
 		evento = [ 1, 2, 3, 4 ].anyOne().toString() + [ 5, 6, 7, 8 ].anyOne().toString() + [ 9, 10, 11, 12 ].anyOne().toString()
 		game.onTick(velocidad, evento, { self.movete()})
 	}
@@ -68,7 +70,7 @@ class Pelota inherits Municion{
 class Triangulos inherits Municion {
 
 	override method image() = "triangulo"+ colorMunicion.nombre() +".png"
-
+	override method reproducirSonido () {sierra.play()}
 	override method chocasteCon(jugador) {
 		jugador.sufrirDanio(60)
 		self.quitar()
@@ -79,10 +81,11 @@ class Triangulos inherits Municion {
 class Bomba inherits Municion {
 	var jugador = ""
 	override method image() = "bombaMunicion"+ colorMunicion.nombre() +".png"
-	
+	override method reproducirSonido () {lanzamiento.play()}
 	override method activar(){
 		jugador.cambiarMunicion(0)
 		//se puede hacer un remove list
+		explosion.play()
 		jugador.dispararTres(arriba,self.position())
 		jugador.dispararTres(abajo,self.position())
 		jugador.dispararTres(izquierda,self.position())
@@ -108,6 +111,7 @@ class Aim inherits Municion {
 	override method image() = "aim"+ colorMunicion.nombre() +".png"
 	
 	override method activar(){
+		teletransportacion.play()
 		jugador.cambiarMunicion(0)
 		jugador.cambiarPosicion(self.position())
 		self.quitar()
@@ -124,6 +128,7 @@ class Aim inherits Municion {
 class Cometa inherits Municion {
 	var patron
 	override method image() = "cometa"+ colorMunicion.nombre() +".png"
+	override method reproducirSonido () {}
 	override method movete() {
 		anguloMunicion = patron.anyOne()
 		position = anguloMunicion.coordenada(position)
