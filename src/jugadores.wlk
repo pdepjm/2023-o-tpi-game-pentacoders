@@ -90,7 +90,7 @@ class Nave {
 	}
 
 	// VISUALES -- vida y nro jugador
-	method text() = "\n\n\n Jugador "+ numeroNave + "\n" + hp.toString()
+	method text() = "                 " + hp.toString()
 
 	method textColor() = color.texto()
 	
