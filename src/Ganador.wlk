@@ -27,9 +27,7 @@ object ganador {
 		
 	}
 	method efecto(jugador){
-		jugador.cambiarMunicion(2)
-		jugador.modoInterruptor(true)
-		jugador.activarMunicion(false)
+		jugador.cambiarMunicion(new Bomba())
 		jugador.disparar()
 	}
 }

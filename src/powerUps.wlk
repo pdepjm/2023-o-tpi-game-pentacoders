@@ -16,9 +16,9 @@ class PowerUp{
 		}
 	}
 	method chocasteCon(jugador){
-		self.accion(jugador)
 		self.quitar()
 		usado = true
+		self.accion(jugador)
 		powerUp.play()
 	}
 }
@@ -26,20 +26,15 @@ class PowerUp{
 class Sierras inherits PowerUp{
 	override method image() = "sierra.png"
 	override method accion(jugador) {
-		jugador.cambiarMunicion(1)
-		jugador.modoInterruptor(false)
-		jugador.activarMunicion(false)
-		game.schedule(5000,{jugador.cambiarMunicion(0)})
+		jugador.cambiarMunicion(sierras)
+		game.schedule(5000,{jugador.cambiarMunicion(jugador.municionPorDefecto())})
 	}
 }
 
 class Bombas inherits PowerUp{
 	override method image() = "bomba.png"
 	override method accion(jugador) {
-		jugador.cambiarMunicion(2)
-		jugador.modoInterruptor(true)
-		jugador.activarMunicion(false)
-		
+		jugador.cambiarMunicion(new Bomba())
 	}
 }
 
@@ -53,8 +48,6 @@ class Vida inherits PowerUp{
 class Teletransportacion inherits PowerUp{
 	override method image() = "portal.png"
 	override method accion(jugador) {
-		jugador.cambiarMunicion(3)
-		jugador.modoInterruptor(true)
-		jugador.activarMunicion(false)
+		jugador.cambiarMunicion(new Mira())
 	} 
 }

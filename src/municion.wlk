@@ -80,56 +80,29 @@ class Sierra inherits Municion {
 		self.quitar()
 		jugador.sufrirDanio(60)
 	}
-
 }
-
-class Bomba inherits Municion {
-	var jugador = ""
+class SuperPelota inherits Municion {
+	var jugador1
 	override method image() = "bombaMunicion"+ colorMunicion.nombre() +".png"
 	override method reproducirSonido () {lanzamiento.play()}
-	override method activar(){
-		jugador.cambiarMunicion(0)
-		//se puede hacer un remove list
-		explosion.play()
-		jugador.dispararTres(arriba,self.position())
-		jugador.dispararTres(abajo,self.position())
-		jugador.dispararTres(izquierda,self.position())
-		jugador.dispararTres(derecha,self.position())
-		jugador.dispararTres(arribaDerecha,self.position())
-		jugador.dispararTres(arribaIzquierda,self.position())
-		jugador.dispararTres(abajoIzquierda,self.position())
-		jugador.dispararTres(abajoDerecha,self.position())
-		
-		self.quitar()
-	}
+
 	override method quitar(){
-		jugador.cambiarMunicion(0)
-		jugador.modoInterruptor(false)
-		jugador.activarMunicion(false)
+		jugador1.cambiarMunicion(jugador1.municionPorDefecto())
 		game.removeTickEvent(evento)
 		game.removeVisual(self)
 	}
-	
 }
+
 class Aim inherits Municion {
-	var jugador = ""
+	var jugador1
 	override method image() = "aim"+ colorMunicion.nombre() +".png"
-	
-	override method activar(){
-		teletransportacion.play()
-		jugador.cambiarMunicion(0)
-		jugador.cambiarPosicion(self.position())
-		self.quitar()
-	}
 	override method quitar(){
-		jugador.cambiarMunicion(0)
-		jugador.modoInterruptor(false)
-		jugador.activarMunicion(false)
+		jugador1.cambiarMunicion(jugador1.municionPorDefecto())
 		game.removeTickEvent(evento)
 		game.removeVisual(self)
 	}
-	
 }
+
 class Cometa inherits Municion {
 	var patron
 	override method image() = "cometa"+ colorMunicion.nombre() +".png"
@@ -145,6 +118,23 @@ class Cometa inherits Municion {
 	}
 	
 }
+object pelotas{
+	method iniciar(jugador){
+		var pelota = new Pelota (anguloMunicion = jugador.angulo(),position = jugador.position(),colorMunicion=jugador.color(),sonidoEncendido = jugador.sonido(),caracteresParaEvento=jugador.caracteres())
+		pelota.iniciarMoviento()
+	}
+	method iniciar2(jugador,posicion,angulo){
+		var pelota = new Pelota (anguloMunicion = angulo,position = posicion,colorMunicion=jugador.color(),sonidoEncendido = jugador.sonido(),caracteresParaEvento=jugador.caracteres())
+		pelota.iniciarMoviento()
+	}
+}
+object sierras{
+	method iniciar(jugador){
+		var sierras = new Sierra (anguloMunicion = jugador.angulo(),position = jugador.position(),colorMunicion=jugador.color(),sonidoEncendido = jugador.sonido(),caracteresParaEvento=jugador.caracteres())
+		sierras.iniciarMoviento()
+	}
+}
+
 object cometas{
 	
 	method iniciar(){
@@ -156,5 +146,50 @@ object cometas{
 		var patrones = [[arriba,izquierda,arribaIzquierda],[abajo,izquierda,abajoIzquierda],[arriba,derecha,arribaDerecha],[abajo,derecha,abajoDerecha]]
 		var cometa = new Cometa(anguloMunicion = arriba, position = posicion,colorMunicion=colores.anyOne(),velocidad=100,patron=patrones.anyOne(),caracteresParaEvento = ["a","b","c","d","e","f","g"])
 		cometa.iniciarMoviento()
+	}
+}
+
+
+class Bomba{
+var explotar = false	
+var superPelota = pelotas
+	method iniciar(jugador){
+		if(!explotar){
+		superPelota = new SuperPelota (anguloMunicion = jugador.angulo(),position = jugador.position(),colorMunicion=jugador.color(),sonidoEncendido = jugador.sonido(),caracteresParaEvento=jugador.caracteres(),jugador1=jugador)
+		superPelota.iniciarMoviento()
+		explotar = true
+		}
+		else{
+			explosion.play()
+			pelotas.iniciar2(jugador,superPelota.position(),arriba)
+			pelotas.iniciar2(jugador,superPelota.position(),abajo)
+			pelotas.iniciar2(jugador,superPelota.position(),izquierda)
+			pelotas.iniciar2(jugador,superPelota.position(),derecha)
+			pelotas.iniciar2(jugador,superPelota.position(),arribaDerecha)
+			pelotas.iniciar2(jugador,superPelota.position(),arribaIzquierda)
+			pelotas.iniciar2(jugador,superPelota.position(),abajoIzquierda)
+			pelotas.iniciar2(jugador,superPelota.position(),abajoDerecha)
+			jugador.cambiarMunicion(jugador.municionPorDefecto())
+			superPelota.quitar()
+		}
+	}
+}
+
+
+class Mira{
+var teletransportarse = false	
+var objetivo = pelotas
+	method iniciar(jugador){
+		if(!teletransportarse){
+		objetivo = new Aim (anguloMunicion = jugador.angulo(),position = jugador.position(),colorMunicion=jugador.color(),sonidoEncendido = jugador.sonido(),caracteresParaEvento=jugador.caracteres(),jugador1=jugador)
+		objetivo.iniciarMoviento()
+		teletransportarse = true
+		}
+		else{
+			teletransportacion.play()
+			jugador.cambiarPosicion(objetivo.position())
+			jugador.cambiarMunicion(jugador.municionPorDefecto())
+			objetivo.quitar()
+		}
 	}
 }

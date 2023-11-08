@@ -15,13 +15,16 @@ class Nave {
 	var contadorAngulo = 0
 	var estaMuerto = false
 	var numeroNave
-	var municiones = 0
-	var modoInterruptor = false
-	var municionInterruptor = self.municionActual(angulo, self.position())
-	var activarMunicion = false
 	var color 
 	var sonido = true
 	var caracteres 
+	var municion = pelotas
+	var municionPorDefecto = pelotas 
+	
+	method color()=color
+	method sonido()=sonido
+	method caracteres()=caracteres
+	method municionPorDefecto()=municionPorDefecto
 	
 	method cambiarPosicion(posicion){
 		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
@@ -29,8 +32,6 @@ class Nave {
 			position=posicion
 		}
 	}
-	method modoInterruptor(modo) {modoInterruptor=modo}
-	method activarMunicion(valor){activarMunicion=valor}
 	
 	method hp(vida){hp=vida}
 	method angulo() = angulo
@@ -60,68 +61,13 @@ class Nave {
 	}
 	
 //----------------------------
-	method cambiarMunicion(municion) {
-		municiones = municion
-	}
-	
-	method municionActual(anguloRecibido, posicion) {
 
-		if (municiones == 0) {
-			return new Pelota(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,sonidoEncendido = sonido,caracteresParaEvento=caracteres)
-		} 
-		else if(municiones == 1) {
-			return new Sierra(anguloMunicion = anguloRecibido, position = posicion,colorMunicion=color,caracteresParaEvento=caracteres)
-		} 
-		else if(municiones == 2){
-			return new Bomba(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color,caracteresParaEvento=caracteres)
-		}
-		else{
-			return new Aim(anguloMunicion = anguloRecibido, position = posicion, jugador = self,colorMunicion=color,caracteresParaEvento=caracteres)
-		}
-		
-	}
-	method crearMunicion(anguloRecibido, posicion) {
-		var municion = self.municionActual(anguloRecibido, posicion)
-		municion.iniciarMoviento()
-		if (hp <= 0) {
-			game.removeVisual(municion)
-			game.removeTickEvent(municion.evento())
-		}
+	method cambiarMunicion(nuevaMunicion) {
+		municion = nuevaMunicion
 	}
 	
-	method crearMunicionInterruptor(anguloRecibido, posicion){
-		municionInterruptor = self.municionActual(anguloRecibido, posicion)
-		municionInterruptor.iniciarMoviento()
-	}
-	/*
-	method municionInterruptor(){
-		
-	}*/
-	
-	method disparar() { // es un método del jugador porque la munición es del jugador
-	
-		if(modoInterruptor){
-			if(activarMunicion){
-				municionInterruptor.activar()
-				activarMunicion = false
-				modoInterruptor = false
-			}
-			else{
-				self.crearMunicionInterruptor(angulo, self.position())
-				activarMunicion = true
-			}
-		}
-		else{
-			self.crearMunicion(angulo, self.position())
-		}
-	}
-	
-	method dispararDos(angulo2) { // es un método del jugador porque la munición es del jugador
-		self.crearMunicion(angulo2,self.position())
-	}
-	
-	method dispararTres(angulo2,posicionDisparo) { // es un método del jugador porque la munición es del jugador
-		self.crearMunicion(angulo2,posicionDisparo)
+	method disparar(){
+		municion.iniciar(self)
 	}
 //----------------------------
 
@@ -156,31 +102,36 @@ class Nave {
 }
 
 class Enemigo inherits Nave {
-	
 	method image() = imagen
 	override method text() = "                        " + hp.toString()
 	method moverRamdon() {
 		const direcciones = [ arriba, abajo, izquierda, derecha ]
 		self.mover(direcciones.anyOne())
 	}
-
+	override method  disparar(){
+		if(!estaMuerto){
+			municion.iniciar(self)
+		}
+	}
 	method iniciar(){
 		game.addVisual(self)
 		self.hp(300)
 		game.onTick(800, "burlarse", { self.burlarse()})
 		game.onTick(800, "movimiento", { self.moverRamdon()})
-		game.onTick(600, "disparar", { self.dispararDos(izquierda) self.dispararDos(derecha)}) 
+		game.onTick(600, "disparar", { angulo = izquierda self.disparar() angulo = derecha self.disparar()}) 
 	}
 
 	override method sufrirDanio(danio) {
 		hp -= danio
-		if (hp <= 0 && juego.cantidadJugadores() == 1) {
-			self.quitar()
-			ganador.gano(numeroNave)
-		} else if (hp <= 0) {
+		if (hp <= 0) {
+			game.removeTickEvent("burlarse")
+			game.removeTickEvent("movimiento")
+			game.removeTickEvent("disparar")
+			estaMuerto = true
 			self.quitar()
 		}
 	}
+	
 	method burlarse(){
 		var descansos = ["Hasta mi abuela juega mejor","Metanle onda que me duermo","Loco a ver si empiezan a jugar","Soy inmune a sus disparos :P","¿Es todo lo que tienen?"]
 		game.say(self, descansos.anyOne())
