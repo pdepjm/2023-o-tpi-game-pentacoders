@@ -136,14 +136,15 @@ object menu {
 
 	var property position = game.origin()
 	var imagen = "Menu 1.png"
-	var modo = true
-	var modoJugador
+	var modo = true // true es para entrenamiento, false para dos jugadores
+	var modoJugador = entrenamiento
 
 	method modoJugador() = modoJugador
 
 	method image() = imagen
 
 	method cambiarModo() {
+		modo = !modo
 		if (!modo) {
 			self.dosJugadores()
 			modoJugador=dosJugadores
@@ -151,7 +152,6 @@ object menu {
 			self.entrenamiento()
 			modoJugador=entrenamiento
 		}
-		modo = !modo
 	}
 
 	method entrenamiento() {
