@@ -13,8 +13,12 @@
 (agregar)
 
 ## Reglas de Juego / Instrucciones
-
-(Escribirlas)
+PentaWarriors es un intento de Bullet Hell diseñado en Wollok
+El usuario podra elegir entre dos modos distintos:
+- 1 jugador:El usuario tendra control de una Nave y su objetivo sera derrotar los distintos enemigos que le aparezcan
+- 2 jugadores: Se habilita la posibilidad de jugar en contra de otro jugador donde el objetivo es vencer al otro usuario.
+ Este modo tambien cuenta con un enemigo de ambos jugadores el cual .
+Ademas, el juego cuenta con ciertos power ups los cuales apareceran por la pantalla.
 
 
 ## Otros
