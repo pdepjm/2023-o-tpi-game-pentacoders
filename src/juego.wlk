@@ -54,31 +54,9 @@ object entrenamiento{
 
 		//var cometa = Cometa (anguloMunicion = arriba, position = game.center(),colorMunicion=amarillo)
 		//	Cometa.iniciarMoviento()
-		/*
-		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png")
-		jugador1.position(game.center().left(2))
-		var enemigo = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
-		var enemigo2 = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
-		var enemigo3 = new Enemigo(position = game.at((0 .. game.width()).anyOne(), (0 .. game.height()).anyOne()), numeroNave = "0", imagen = "enemigo.png")
-		game.addVisual(enemigo)
-		game.addVisual(enemigo2)
-		game.addVisual(enemigo3)
-		game.onTick(500, "disparar", { enemigo.dispararDos(izquierda)
-			enemigo.dispararDos(derecha)
-		})
-		game.whenCollideDo(enemigo, { elemento => elemento.chocasteCon(enemigo)})
-		game.whenCollideDo(enemigo2, { elemento => elemento.chocasteCon(enemigo2)})
-		game.whenCollideDo(enemigo3, { elemento => elemento.chocasteCon(enemigo3)})
-		game.onTick(500, "disparar", { enemigo2.dispararDos(arriba)
-			enemigo.dispararDos(abajo)
-		})
-		game.onTick(500, "disparar", { enemigo3.dispararDos(izquierda)
-			enemigo.dispararDos(derecha)
-		})
-		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
-		game.onTick(800, "movimiento", { enemigo2.moverRamdon()})
-		game.onTick(800, "movimiento", { enemigo3.moverRamdon()})
-			// movimiento jugador 1
+		
+		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
+		jugador1.iniciar()
 		keyboard.up().onPressDo({ jugador1.mover(arriba)})
 		keyboard.down().onPressDo({ jugador1.mover(abajo)})
 		keyboard.left().onPressDo({ jugador1.mover(izquierda)})
@@ -88,12 +66,18 @@ object entrenamiento{
 		keyboard.e().onPressDo({ jugador1.disparar()
 			disparoSonido.play()
 		})
-		game.addVisual(jugador1)
-		game.showAttributes(jugador1)
-		game.whenCollideDo(jugador1, { elemento =>
-			elemento.chocasteCon(jugador1)
-			elemento.quitar()
-		})*/
+		var enemigo = new Enemigo(numeroNave = "0", imagen = "enemigoBlanco.png",color = blanco,sonido=false,caracteres = ["h","i","j","k","l","ll","m","n","o","p","q","r"])
+		enemigo.iniciar()
+
+		game.onTick(500, "disparar", { enemigo.disparar()
+			enemigo.disparar()
+		})
+		game.whenCollideDo(enemigo, { elemento => elemento.chocasteCon(enemigo)})
+
+
+		game.onTick(800, "movimiento", { enemigo.moverRamdon()})
+
+
 		keyboard.backspace().onPressDo({ game.clear() musicaFondo.stop() juego.menuReset()})
 	}
 }
