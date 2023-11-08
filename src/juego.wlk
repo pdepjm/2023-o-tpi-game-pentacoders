@@ -108,7 +108,7 @@ object juego {
 	}
 
 	method dosJugadores() {
-		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png",color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
+		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png", contadorAngulo = 2,color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
 		jugador1.position(game.center().left(7))
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
 		keyboard.a().onPressDo({ jugador1.mover(izquierda)})
