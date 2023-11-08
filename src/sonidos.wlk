@@ -50,3 +50,30 @@ object sonidoMenu {
 		game.sound("sonidoMenu.mp3").play()
 	}
 }
+
+object musicaMenu{
+var musica = game.sound("musicaMenu.mp3")
+	method play (){
+		musica = game.sound("musicaMenu.mp3")
+		musica.shouldLoop(true)
+		musica.volume(0.5)
+		musica.play()
+	}
+	
+	method stop(){
+		musica.stop()
+	}
+}
+object musicaFondo{
+var musica = game.sound("musicaFondo.mp3")
+	method play (){
+		musica = game.sound("musicaFondo.mp3")
+		musica.shouldLoop(true)
+		musica.volume(0.5)
+		musica.play()
+	}
+	method stop(){
+		musica.stop()
+	}
+}
+

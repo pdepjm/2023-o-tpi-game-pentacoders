@@ -9,14 +9,12 @@ import powerUps.*
 import colores.*
 
 
-object juego {
 
+object juego {
+	
 	method iniciar(modoDeJuego) {
 		modoDeJuego.iniciar()
-		const fondo = game.sound("musicaFondo.mp3")
-		fondo.shouldLoop(true)
-		fondo.volume(0.5)
-		fondo.play()		
+		musicaFondo.play()	
 	}
 
 	method setear() {
@@ -27,22 +25,24 @@ object juego {
 		game.title("PentaWarriors")
 		self.menu()		
 	}
-
-	method menu() {		
+	method setearMenu(){
 		keyboard.up().onPressDo({ menu.cambiarModo() sonidoMenu.play()} )
 		keyboard.down().onPressDo({ menu.cambiarModo() sonidoMenu.play()})
 		keyboard.enter().onPressDo({ sonidoMenu.play() game.removeVisual(menu)
-			game.clear() musica.stop() self.iniciar(menu.modoJugador())
+			game.clear()musicaMenu.stop() self.iniciar(menu.modoJugador()) 
 		})
 		game.addVisual(menu)
 		cometas.iniciar()
-		
-		const musica = game.sound("musicaMenu.mp3")
-		musica.shouldLoop(true)
-		musica.volume(0.5)
-		game.schedule(20, { musica.play()} )
+	}
+	method menu() {		
+		self.setearMenu()
+		game.schedule(20, { musicaMenu.play()} )
+		game.start() 
 
-		game.start()
+	}
+	method menuReset() {		
+		self.setearMenu()
+		musicaMenu.play()
 
 	}
 }
@@ -94,6 +94,7 @@ object entrenamiento{
 			elemento.chocasteCon(jugador1)
 			elemento.quitar()
 		})*/
+		keyboard.backspace().onPressDo({ game.clear() musicaFondo.stop() juego.menuReset()})
 	}
 }
 
@@ -129,6 +130,8 @@ object dosJugadores{
 		cometas.iniciar()
 		ganador.participantes([jugador1,jugador2])
 		game.schedule(20000,{game.clear() self.iniciar()}) //terminar
+		
+		keyboard.backspace().onPressDo({ game.clear() musicaFondo.stop() juego.menuReset()})
 	}
 }
 
@@ -177,6 +180,4 @@ object powerUps {
 		game.schedule(3000,{powerUp.quitar()})
 	}
 }
-
-
 

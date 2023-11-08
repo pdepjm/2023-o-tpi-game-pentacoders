@@ -1,6 +1,8 @@
 import wollok.game.*
 import municion.*
 import angulo.*
+import sonidos.*
+import juego.*
 object ganador {
 	var property position = game.origin()
 	var imagen = "ganador.png"
@@ -24,7 +26,7 @@ object ganador {
 		cometas.iniciar()
 		game.say(ganador, "Gane")
 		game.onTick(4000,"festejo",{ganador.rotarA(horario) self.efecto(ganador)})
-		
+		keyboard.backspace().onPressDo({ game.clear() musicaFondo.stop() juego.menuReset()})
 	}
 	method efecto(jugador){
 		jugador.cambiarMunicion(new Bomba())
