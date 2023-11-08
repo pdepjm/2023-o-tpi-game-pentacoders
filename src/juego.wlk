@@ -11,23 +11,12 @@ import colores.*
 
 object juego {
 
-	var cantidadJugadores
-
-	method cantidadJugadores() = cantidadJugadores
-
-	method iniciar() {
-		if (menu.modoJugador()) {
-			cantidadJugadores = 1
-			self.unJugador()
-		} else {
-			cantidadJugadores = 2
-			self.dosJugadores()
-		}
+	method iniciar(modoDeJuego) {
+		modoDeJuego.iniciar()
 		const fondo = game.sound("musicaFondo.mp3")
 		fondo.shouldLoop(true)
 		fondo.volume(0.5)
-		fondo.play()
-		
+		fondo.play()		
 	}
 
 	method setear() {
@@ -36,17 +25,14 @@ object juego {
 		game.cellSize(50)
 		game.boardGround("fondo.png")
 		game.title("PentaWarriors")
-		self.menu()
-		
+		self.menu()		
 	}
 
-	method menu() {
-		
-		
+	method menu() {		
 		keyboard.up().onPressDo({ menu.cambiarModo() sonidoMenu.play()} )
 		keyboard.down().onPressDo({ menu.cambiarModo() sonidoMenu.play()})
 		keyboard.enter().onPressDo({ sonidoMenu.play() game.removeVisual(menu)
-			game.clear() musica.stop() self.iniciar()
+			game.clear() musica.stop() self.iniciar(menu.modoJugador())
 		})
 		game.addVisual(menu)
 		cometas.iniciar()
@@ -59,8 +45,11 @@ object juego {
 		game.start()
 
 	}
+}
 
-	method unJugador() {
+object entrenamiento{
+	
+	method iniciar() {
 		powerUps.iniciar()
 
 		//var cometa = Cometa (anguloMunicion = arriba, position = game.center(),colorMunicion=amarillo)
@@ -106,8 +95,10 @@ object juego {
 			elemento.quitar()
 		})*/
 	}
+}
 
-	method dosJugadores() {
+object dosJugadores{
+	method iniciar() {
 		var jugador1 = new Jugador(numeroNave = "1", imagen = "Jugador1_derecha.png", contadorAngulo = 2,color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
 		jugador1.position(game.center().left(7))
 		keyboard.w().onPressDo({ jugador1.mover(arriba)})
@@ -137,9 +128,8 @@ object juego {
 		powerUps.iniciar()
 		cometas.iniciar()
 		ganador.participantes([jugador1,jugador2])
-		game.schedule(20000,{game.clear() self.dosJugadores()}) //terminar
+		game.schedule(20000,{game.clear() self.iniciar()}) //terminar
 	}
-
 }
 
 object menu {
@@ -147,7 +137,7 @@ object menu {
 	var property position = game.origin()
 	var imagen = "Menu 1.png"
 	var modo = true
-	var modoJugador = true
+	var modoJugador
 
 	method modoJugador() = modoJugador
 
@@ -156,20 +146,20 @@ object menu {
 	method cambiarModo() {
 		if (!modo) {
 			self.dosJugadores()
+			modoJugador=dosJugadores
 		} else {
-			self.unJugador()
+			self.entrenamiento()
+			modoJugador=entrenamiento
 		}
 		modo = !modo
 	}
 
-	method unJugador() {
+	method entrenamiento() {
 		imagen = "Menu 1.png"
-		modoJugador = true
 	}
 
 	method dosJugadores() {
 		imagen = "Menu 2.png"
-		modoJugador = false
 	}
 
 }
