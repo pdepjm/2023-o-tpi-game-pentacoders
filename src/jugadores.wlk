@@ -89,8 +89,8 @@ class Nave {
 		game.removeVisual(self)
 	}
 
-	// VIDA
-	method text() = "                 " + hp.toString()
+	// VISUALES -- vida y nro jugador
+	method text() = "\n\n\n Jugador "+ numeroNave + "\n" + hp.toString()
 
 	method textColor() = color.texto()
 	
