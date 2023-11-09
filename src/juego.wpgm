@@ -1,5 +1,6 @@
 import juego.*
 
+
 program naves {
 	
     juego.setear()
