@@ -3,6 +3,5 @@ import juego.*
 program naves {
 
     juego.setear()
-    //juego.meanu()
 
 }
