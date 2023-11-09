@@ -48,7 +48,7 @@
   - Rotar en sentido antihorario: I
   - Disparar: P
 ### Introducción
-PentaWarriors es un juego combate en el espacio dinámico y con elementos aleatorios como cometas, powerUps y un enemigo que cambia de color, se burla de los jugadores, se mueve y dispara solo. 
+PentaWarriors es un juego combate en el espacio, dinámico y con elementos aleatorios como cometas, powerUps y un enemigo que cambia de color, se burla de los jugadores, se mueve y dispara solo. 
 
 ### Modos de juego
 #### Entrenamiento
