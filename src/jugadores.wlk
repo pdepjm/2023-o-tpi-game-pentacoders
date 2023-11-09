@@ -9,12 +9,13 @@ import colores.*
 class Nave {
 
 	var property position = game.center()
-	var imagen
+	var imagenJugador
+	var imagen = imagenJugador + "_" + angulo + ".png"
+	
 	var hp = 500
-	var angulo = derecha
-	var contadorAngulo = 0
+	var property angulo = derecha
+	var property contadorAngulo = 0
 	var estaMuerto = false
-	var numeroNave
 	var color 
 	var sonido = true
 	var caracteres 
@@ -25,7 +26,7 @@ class Nave {
 	method sonido()=sonido
 	method caracteres()=caracteres
 	method municionPorDefecto()=municionPorDefecto
-	
+
 	method cambiarPosicion(posicion){
 		if ( !( posicion.y() == -1 || posicion.y() == game.height() || posicion.x() == -1 || posicion.x() == game.width() ) )
 		{
@@ -34,7 +35,6 @@ class Nave {
 	}
 	
 	method hp(vida){hp=vida}
-	method angulo() = angulo
 	
 	
 	method hp() = hp
@@ -46,7 +46,7 @@ class Nave {
 	method image() = imagen
 
 	method cambiarImagen(nuevoAngulo) {
-		imagen = "Jugador" + numeroNave + "_" + nuevoAngulo + ".png"
+		imagen = imagenJugador + "_" + nuevoAngulo + ".png"
 	}
 
 	method chocar() {
