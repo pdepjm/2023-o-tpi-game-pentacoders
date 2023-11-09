@@ -131,6 +131,7 @@ object dosJugadores{
 		enemigo.iniciar()
 		powerUps.iniciar()
 		cometas.iniciar()
+		teletransportacion.play()
 	}
 }
 
