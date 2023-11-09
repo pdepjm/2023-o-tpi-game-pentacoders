@@ -9,8 +9,16 @@
 - Tiscornia, Matías José
 
 ## Capturas
+### Modo Iniciar
+![captura](/capturas/MenuIniciar.png) 
+![captura](/capturas/Iniciar1.png) 
+![captura](/capturas/Iniciar2.png) 
+![captura](/capturas/Iniciar3.png) 
 
-(agregar)
+### Modo Entrenar 
+![captura](/capturas/MenuEntrenar.png) 
+![captura](/capturas/Entrenar1.png) 
+![captura](/capturas/Entrenar2.png) 
 
 ## Reglas de Juego / Instrucciones
 ### Jugadores
