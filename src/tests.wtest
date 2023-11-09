@@ -3,7 +3,7 @@ import municion.*
 import wollok.game.*
 import direcciones.*
 import angulo.*
-
+import colores.*
 
 describe "Nave" {
 
@@ -12,8 +12,8 @@ describe "Nave" {
 
 	method initialize() {
 		game.clear()
-		jugador1 = new Nave(numeroNave="1", imagen = "Jugador1_0.png")
-		jugador2 = new Nave(numeroNave="2", imagen = "Jugador2_180.png")
+		jugador1 = new Jugador(imagen = "Jugador1_derecha.png",imagenJugador = "Jugador1",color = verde, caracteres = [1, 2, 3, 4,5, 6, 7, 8, 9, 10, 11, 12])
+		jugador2 = new Enemigo(imagenJugador = "enemigoBlanco.png",color = blanco,sonido=false,caracteres = ["h","i","j","k","l","ll","m","n","o","p","q","r"])
 	}
 
 
