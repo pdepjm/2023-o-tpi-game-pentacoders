@@ -55,7 +55,9 @@ PentaWarriors es un juego combate en el espacio, dinámico y con elementos aleat
 Este modo está pensado para practicar los movimientos y probar los powerUps. Tiene un enemigo que se puede matar, la forma de quitarle vida es chocando con él (estando en la misma posición) o disparándole. Cuando muere se puede seguir jugando, pudiendo así probar los diferentes powerUps. No hay cometas en este modo. 
 #### Iniciar (2 jugadores)
 Este modo es de dos jugadores, el objetivo es vencer al otro jugador. Hay un enemigo en común que se puede matar. La forma de quitarle vida es chocando con él (estando en la misma posición). Hay cometas que aparecen aleatoriamente, de diferentes colores y con un patrón de movimiento aleatorio entre los definidos. Estos cometas además si colisionan con los jugadores le quitan vida. Cada 25 segundos se invierten las posiciones de los jugadores, es decir, un jugador pasa a ser el otro pero conserva sus propiedades (munición y vida) y se mantienen los controles. Los powerUps aparecen de forma aleatoria.
-  
+#### Controles
+Para cambiar el modo usar RIGHT o LEFT. Para ingresar al modo elegido pulsar ENTER. Con BACKSPACE se puede regresar al menú dentro de cualquier modo.
+
 ### PowerUps
 ![vida](/assets/vida.png) Vida: hace que el jugador recupere 250 de vida
 
