@@ -13,6 +13,13 @@
 (agregar)
 
 ## Reglas de Juego / Instrucciones
+### Jugadores
+![jugador1](/assets/Jugador1_derecha.png) Jugador 1
+
+![jugador2](/assets/Jugador2_derecha.png) Jugador 2 
+
+![enemigo](/assets/enemigoAmarillo.png) ![enemigo](/assets/enemigoBlanco.png) ![enemigo](/assets/enemigoCeleste.png) ![enemigo](/assets/enemigoVerde.png) ![enemigo](/assets/enemigoVioleta.png)  Enemigo
+
 ### Controles
 - Jugador 1
   - Mover derecha: D
@@ -23,7 +30,7 @@
   - Rotar en sentido antihorario: Q
   - Disparar: SPACE
   
-- Jugador 2
+- Jugador 2 
   - Mover derecha: RIGHT
   - Mover izquierda: LEFT
   - Mover arriba: UP
