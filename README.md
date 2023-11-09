@@ -22,11 +22,12 @@
 
 ## Reglas de Juego / Instrucciones
 ### Jugadores
-![jugador1](/assets/Jugador1_derecha.png) Jugador 1
-
-![jugador2](/assets/Jugador2_derecha.png) Jugador 2 
-
-![enemigo](/assets/enemigoAmarillo.png) ![enemigo](/assets/enemigoBlanco.png) ![enemigo](/assets/enemigoCeleste.png) ![enemigo](/assets/enemigoVerde.png) ![enemigo](/assets/enemigoVioleta.png)  Enemigo
+#### Jugador 1
+![jugador1](/assets/Jugador1_derecha.png) 
+#### Jugador 2
+![jugador2](/assets/Jugador2_derecha.png)  
+#### Enemigo
+![enemigo](/assets/enemigoAmarillo.png) ![enemigo](/assets/enemigoBlanco.png) ![enemigo](/assets/enemigoCeleste.png) ![enemigo](/assets/enemigoVerde.png) ![enemigo](/assets/enemigoVioleta.png)  
 
 ### Controles
 - Jugador 1
@@ -50,8 +51,10 @@
 PentaWarriors es un juego combate en el espacio
 
 ### Modos de juego
-- Entrenamiento: este modo está pensado para practicar los movimientos y probar los powerUps. Tiene un enemigo que se puede matar, la forma de quitarle vida es chocando con él (estando en la misma posición) o disparándole. Cuando muere el enemigo se puede seguir jugando, pudiendo así probar los powerUps. No hay cometas en este modo. 
-- 2 jugadores (iniciar): este modo es de dos jugadores, el el objetivo es vencer al otro usuario. Hay un enemigo en común que se puede matar. La forma de quitarle vida es chocando con él (estando en la misma posición). Hay cometas que aparecen aleatoriamente, de diferentes colores, con un patron de movimiento aleatorio entre los definidos. Estos cometas además si colisionan con los jugadores le quitan vida. Cada 25 segundos se invierten la posiciones de los jugadores, un jugador pasa a ser el otro jugador, pero se mantienen los controles y la munición que tenía el jugador. Los powerUps también aparecen de forma aleatoria.
+#### Entrenamiento
+Este modo está pensado para practicar los movimientos y probar los powerUps. Tiene un enemigo que se puede matar, la forma de quitarle vida es chocando con él (estando en la misma posición) o disparándole. Cuando muere el enemigo se puede seguir jugando, pudiendo así probar los powerUps. No hay cometas en este modo. 
+#### Iniciar (2 jugadores)
+Este modo es de dos jugadores, el el objetivo es vencer al otro jugador. Hay un enemigo en común que se puede matar. La forma de quitarle vida es chocando con él (estando en la misma posición). Hay cometas que aparecen aleatoriamente, de diferentes colores, con un patrón de movimiento aleatorio entre los definidos. Estos cometas además si colisionan con los jugadores le quitan vida. Cada 25 segundos se invierten la posiciones de los jugadores, es decir, un jugador pasa a ser el otro jugador pero conserva sus propiedades (munición y vida), se mantienen los controles. Los powerUps aparecen de forma aleatoria.
   
 ### PowerUps
 ![vida](/assets/vida.png) Vida: hace que el jugador recupere 250 de vida
@@ -61,6 +64,13 @@ PentaWarriors es un juego combate en el espacio
 ![sierra](/assets/sierra.png) Munición sierra: mejora la munición ![sierra](/assets/sierraAmarillo.png) , esta munición resta 60 de vida al oponente.
 
 ![bomba](/assets/bomba.png)  Bomba: cambia la munición por una bomba ![bomba](/assets/bombaMunicionVerde.png). Para activarla, se debe volver a disparar cuando la bomba llegue a la posición deseda. La explosión dispara pelotas en todas las direcciones. Es de un solo uso, luego de usarla el jugador regresa a la munición por defecto.
+
+### Cometas
+![vida](/assets/cometaAmarillo.png) 
+![vida](/assets/cometaCeleste.png) 
+![vida](/assets/cometaVerde.png) 
+![vida](/assets/cometaVioleta.png) 
+
 
 ## Otros
 
