@@ -39,10 +39,13 @@ PentaWarriors es un juego combate en el espacio
 - 2 jugadores (iniciar): este modo es de dos jugadores, el el objetivo es vencer al otro usuario. Hay un enemigo en común que se puede matar. La forma de quitarle vida es chocando con él (estando en la misma posición). Hay cometas que aparecen aleatoriamente, de diferentes colores, con un patron de movimiento aleatorio entre los definidos. Estos cometas además si colisionan con los jugadores le quitan vida. Cada 25 segundos se invierten la posiciones de los jugadores, un jugador pasa a ser el otro jugador, pero se mantienen los controles y la munición que tenía el jugador. Los powerUps también aparecen de forma aleatoria.
   
 ### PowerUps
-- Vida: hace que el jugador recupere 250 de vida 
-- Teletransportación: cambia la munición por un aim. Para activar la teletransportación se debe volver a disparar cuando el aim llegue a la posición deseda. Es de un solo uso, luego de usarlo el jugador regresa a la munición por defecto.
-- Munición sierra: mejora la munición, esta munición resta 60 de vida al oponente.
-- Bomba: cambia la munición por una bomba. Para activarla, se debe volver a disparar cuando la bomba llegue a la posición deseda. La explosión dispara pelotas en todas las direcciones. Es de un solo uso, luego de usarla el jugador regresa a la munición por defecto.
+![vida](/assets/vida.png) Vida: hace que el jugador recupere 250 de vida
+
+![portal](/assets/portal.png) Teletransportación: cambia la munición por un aim ![aim](/assets/aimVerde.png) . Para activar la teletransportación se debe volver a disparar cuando el aim llegue a la posición deseda. Es de un solo uso, luego de usarlo el jugador regresa a la munición por defecto.
+
+![sierra](/assets/sierra.png) Munición sierra: mejora la munición ![sierra](/assets/sierraAmarillo.png) , esta munición resta 60 de vida al oponente.
+
+![bomba](/assets/bomba.png)  Bomba: cambia la munición por una bomba ![bomba](/assets/bombaMunicionVerde.png). Para activarla, se debe volver a disparar cuando la bomba llegue a la posición deseda. La explosión dispara pelotas en todas las direcciones. Es de un solo uso, luego de usarla el jugador regresa a la munición por defecto.
 
 ## Otros
 
