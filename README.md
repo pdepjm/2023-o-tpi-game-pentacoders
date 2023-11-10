@@ -50,7 +50,7 @@
   - Rotar en sentido antihorario: I
   - Disparar: P
 ### Introducción
-PentaWarriors es un juego combate en el espacio, dinámico y con elementos aleatorios como cometas, powerUps y un enemigo que cambia de color, se burla de los jugadores, se mueve y dispara solo. 
+PentaWarriors es un juego de combate en el espacio, dinámico y con elementos aleatorios como cometas, powerUps y un enemigo que cambia de color, se burla de los jugadores, se mueve y dispara solo. 
 
 ### Modos de juego
 #### Entrenamiento
@@ -61,7 +61,7 @@ Este modo es de dos jugadores, el objetivo es vencer al otro jugador. Hay un ene
 Para cambiar el modo usar UP o DOWN. Para ingresar al modo elegido pulsar ENTER. Con BACKSPACE se puede regresar al menú dentro de cualquier modo.
 
 ### PowerUps
-![vida](/assets/vida.png) Vida: hace que el jugador recupere 250 de vida
+![vida](/assets/vida.png) Vida: hace que el jugador recupere 250 de vida.
 
 ![portal](/assets/portal.png) Teletransportación: cambia la munición por un aim ![aim](/assets/aimVerde.png) . Para activar la teletransportación se debe volver a disparar cuando el aim llegue a la posición deseda. Es de un solo uso, luego de usarlo el jugador regresa a la munición por defecto. El aim solo puede ser activado dentro del tablero de juego, si llega al final y no fue activado, el jugador regresa a la munición por defecto.
 
